@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main(){
+  int n,soma,sobra;
+  long long novo;
+
+  scanf("%d", &n);
+  novo = n*37;
+  soma = 0;
+
+  while (novo>0){
+    sobra = novo%10;
+    soma = soma + sobra;
+    novo = novo/10;
+  }
+
+  if (n==soma)
+    printf("SIM\n");
+  else
+    printf("NAO\n");
+
+  return 0;
+}
