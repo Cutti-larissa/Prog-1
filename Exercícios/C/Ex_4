@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main(){
+    int lidos, soma, penult, ult;
+    
+    scanf("%d", &penult);
+    scanf("%d", &ult);
+    
+    lidos = 2;
+    soma = penult + ult;
+    
+    while ((penult*2 != ult)&(penult/2 != ult)){
+        penult = ult;
+        scanf("%d", &ult);
+        lidos++;
+        soma=soma+ult;
+    }
+    
+    printf("%d %d %d %d\n", lidos, soma, penult, ult);
+}
