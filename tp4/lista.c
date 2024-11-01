@@ -15,8 +15,10 @@ struct lista_t *lista_cria (){
 int lista_insere (struct lista_t *lst, int item, int pos){
   int i;
   struct item_t *itm = malloc(sizeof(struct item_t));
-  if(!lst)
+  if(!lst){
+    free(itm);
     return(-1);
+  }
   if (!itm || pos<-1)
     return(-1);
   itm->valor = item;
