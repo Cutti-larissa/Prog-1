@@ -25,9 +25,9 @@ int lista_insere (struct lista_t *lst, int item, int pos){
     itm->prox=NULL;
     if (lst->tamanho == 0)
       lst->prim=itm;
-    if(lst->ult)
+    if(lst->ult){
       lst->ult->prox=itm;
-      lst->ult = itm;
+    lst->ult = itm;
   }else{
     if(lst->tamanho==0){
       itm->ant=NULL;
