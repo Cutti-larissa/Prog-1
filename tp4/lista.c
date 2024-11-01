@@ -3,7 +3,7 @@
 #include "lista.h"
 
 struct lista_t *lista_cria (){
-  struct lista_t *lst malloc(sizeof(struct lista_t));
+  struct lista_t *lst = malloc(sizeof(struct lista_t));
   if (!lst)
     return(NULL);
   lst->prim=NULL;
