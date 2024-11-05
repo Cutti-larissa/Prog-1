@@ -32,12 +32,16 @@ int fprio_insere (struct fprio_t *f, void *item, int tipo, int prio)
     }
     else
     {
-        int i;
-        struct fpnodo_t *aux = f->prim;
-        while (aux->prox && nodo->prio>=aux->prox->prio)
-            aux = aux->prox;
-        nodo->prox = aux->prox;
-        aux->prox = nodo;   
+        if(f->prim->prio>nodo->prio){
+            nodo->prox=f->prim;
+            f->prim = nodo;
+        }else{
+            struct fpnodo_t *aux = f->prim;
+            while (aux->prox && nodo->prio>=aux->prox->prio)
+                aux = aux->prox;
+            nodo->prox = aux->prox;
+            aux->prox = nodo; 
+        }
     }
     f->num++;
     return(f->num);
@@ -45,15 +49,15 @@ int fprio_insere (struct fprio_t *f, void *item, int tipo, int prio)
 
 void *fprio_retira (struct fprio_t *f, int *tipo, int *prio)
 {
-    if(!f || !f->prim)
+    if(!f || !f->prim || !tipo || !prio)
         return(NULL);
     struct fpnodo_t *aux = f->prim; 
     void *item;
-    tipo = f->prim->tipo;
-    prio = f->prim->prio;
+    *tipo = f->prim->tipo;
+    *prio = f->prim->prio;
     f->prim = aux->prox;
     item = aux->item;
-    free(aux->item);
+    f->num--;
     free(aux);
     return(item);
 }
@@ -65,9 +69,6 @@ int fprio_tamanho (struct fprio_t *f)
     return(f->num);
 }
 
-// Imprime o conteúdo da fila no formato "(tipo prio) (tipo prio) ..."
-// Para cada item deve ser impresso seu tipo e sua prioridade, com um
-// espaço entre valores, sem espaços antes ou depois e sem nova linha.
 void fprio_imprime (struct fprio_t *f)
 {
     int i;
