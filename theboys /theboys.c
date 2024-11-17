@@ -21,9 +21,9 @@
 int main ()
 {
   int i;
-  struct heroi_t *heroi;
   for (i=0; i<n_herois; i++)
   {
+    struct heroi_t *heroi;
     int habilidades = rand () % (3 - 1 + 1) + 1;
     struct cjto_t *hab_heroi = cjto_cria(habilidades);
     
