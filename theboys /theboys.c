@@ -17,13 +17,13 @@
 #define N_BASES N_HEROIS / 5
 #define N_MISSOES T_FIM_DO_MUNDO / 100
 
-// programa principal
-int main ()
+void inicia_herois()
 {
   int i;
   for (i=0; i<n_herois; i++)
   {
     struct heroi_t *heroi;
+    
     int habilidades = rand () % (3 - 1 + 1) + 1;
     struct cjto_t *hab_heroi = cjto_cria(habilidades);
     
@@ -33,6 +33,11 @@ int main ()
     heroi->veloc = rand () % (5000 - 50 + 1) + 50;
     heroi->hab = 
   }
+}
+
+// programa principal
+int main ()
+{
 /*iniciar as entidades e atributos do mundo
 criar a fila de eventos futuros
 criar os eventos iniciais
