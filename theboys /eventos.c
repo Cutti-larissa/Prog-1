@@ -15,9 +15,9 @@ void chega(int t, struct heroi_t *H, struct base_t *B)
             espera = 1;
     
     if (espera) // se espera:
-    /*cria e insere na LEF o evento ESPERA (agora, H, B)
-    senão:
-    cria e insere na LEF o evento DESISTE (agora, H, B)*/
+        struct ev_t//cria e insere na LEF o evento ESPERA (agora, H, B)
+    //senão:
+    //cria e insere na LEF o evento DESISTE (agora, H, B)*/
 }
 
 void espera(int t, struct heroi_t *H, struct base_t *B)
