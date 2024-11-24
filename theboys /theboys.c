@@ -54,11 +54,11 @@ struct mission_t{
 
 struct mundo_t{
     int nHerois;
-    int Herois[N_HEROIS];
+    struct heroi_t Herois[N_HEROIS];
     int nBases;
-    int Bases[N_BASES];
+    struct base_t Bases[N_BASES];
     int nMissoes;
-    int Missoes[N_MISSOES];
+    struct mission_t Missoes[N_MISSOES];
     int nHabilidades;
     struct coord_t *tam_mundo;
     int relogio;
