@@ -89,6 +89,7 @@ void inicia_herois(struct mundo_t *W)
     
     heroi->id = i; //id = número sequencial [0...N_HEROIS-1]
     heroi->xp = 0; //experiência = 0
+    heroi->status = 1; //heroi vivo
     heroi->paciencia = rand() % (101); //paciência = número aleatório [0...100]
     heroi->veloc = rand () % (5000 - 50 + 1) + 50; //velocidade  = número aleatório [50...5000] (em metros/minuto = 3 Km/h a 300 Km/h)
     habi = cjto_cria(rand()% (3 - 1 + 1) + 1);
