@@ -42,6 +42,12 @@ struct mission_t
     struct coord_t *local;
 };
 
+struct ev_t{
+    int tempo;
+    struct heroi_t;
+    struct base_t;
+};
+
 struct mundo_t
 {
     int nHerois;
