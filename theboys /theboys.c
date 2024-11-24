@@ -17,6 +17,11 @@
 #define N_BASES N_HEROIS / 5
 #define N_MISSOES T_FIM_DO_MUNDO / 100
 
+struct ev{
+    int tempo;
+    struct heroi_t;
+    struct base_t;
+};
 struct coord_t{
     int x;
     int y;
