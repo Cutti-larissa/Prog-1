@@ -35,6 +35,7 @@ struct heroi_t{
     int veloc;
     int xp;
     int base;
+    int status
 };
 
 struct base_t{
