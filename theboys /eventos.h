@@ -1,19 +1,26 @@
-void chega(int t, int h, int b);
+//verificar erro
+#include <stdio.h>
+#include <stdlib.h>
+#include "conjunto.h"
+#include "fila_espera.h"
+#include "fprio.h"
 
-void espera(int t, int h, int b);
+void chega(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF); //tipo 0
 
-void desiste(int t, int h, int b);
+void espera(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF); //tipo 1
 
-void avisa(int t, int b);
+void desiste(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W); //tipo 2
 
-void entra(int t, int h, int b);
+void avisa(int t, struct base_t *B, struct fprio_t *LEF); //tipo 3
 
-void sai(int t, int h, int b);
+void entra(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF); //tipo 4
 
-void viaja( int t, int h, int d);
+void sai(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W); //tipo 5
 
-void morre(int t, int h, int b);
+void viaja(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W); //tipo 6
 
-void missao(int t, int m);
+void morre(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF); //tipo 7
 
-void fim(int t);
+void missao(int t, struct mission_t *M, struct fprio_t *LEF, struct mundo_t *W); //tipo 8
+
+void fim(int t);  //tipo 9
