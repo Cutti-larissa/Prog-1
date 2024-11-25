@@ -5,13 +5,13 @@
 // para até CAP elementos, definida no momento de sua criação.
 //
 // Implementação com lista encadeada (completar).
-
+#include "entidades.h"
 #ifndef FILA
 #define FILA
 
 struct nodo_t
 {
-  int heroi_id;
+  struct heroi_t *hero;
   int *prox;
 };
 
