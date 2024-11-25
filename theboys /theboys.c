@@ -51,15 +51,16 @@ struct mission_t{
     struct cjto_t *hab;
     int perigo; //ask
     struct coord_t *local;
+    int status;
 };
 
 struct mundo_t{
     int nHerois;
-    struct heroi_t Herois[N_HEROIS];
+    struct heroi_t *Herois[N_HEROIS];
     int nBases;
-    struct base_t Bases[N_BASES];
+    struct base_t *Bases[N_BASES];
     int nMissoes;
-    struct mission_t Missoes[N_MISSOES];
+    struct mission_t *Missoes[N_MISSOES];
     int nHabilidades;
     struct coord_t *tam_mundo;
     int relogio;
