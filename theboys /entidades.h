@@ -1,13 +1,56 @@
 #include "conjunto.h"
-#include "fila.h"
 
-#define t_inicio 0
-#define t_fim_do_mundo 525600
-#define n_tamanho_mundo 20000
-#define n_habilidades 10
-#define n_herois n_habilidades * 5
-#define n_bases n_herois / 5
-#define n_missoes t_fim_do_mundo / 100
+#define T_INICIO 0
+#define T_FIM_DO_MUNDO 525600
+#define N_TAMANHO_MUNDO 20000
+#define N_HABILIDADES 10
+#define N_HEROIS N_HABILIDADES * 5
+#define N_BASES N_HEROIS / 5
+#define N_MISSOES T_FIM_DO_MUNDO / 100
+
+struct fpnodo_t
+{
+  void *item ;			// item associado ao nodo
+  int   tipo ;			// tipo do item
+  int   prio ;			// prioridade do item
+  struct fpnodo_t *prox;	// próximo nodo
+};
+
+// descreve uma fila de prioridades
+struct fprio_t
+{
+  struct fpnodo_t *prim ;	// primeiro nodo da fila
+  int num ;			// número de itens na fila
+} ;
+
+struct nodo_t
+{
+  struct heroi_t *hero;
+  int *prox;
+};
+
+struct fila_t
+{
+  struct nodo_t *prim;
+  struct nodo_t *ult;
+  int capacidade;
+  int qtde;
+};
+
+struct item_t
+{
+  int valor ;			// valor do item
+  struct item_t *ant ;		// item anterior
+  struct item_t *prox ;	// próximo item
+} ;
+
+// estrutura de uma lista
+struct lista_t
+{
+  struct item_t *prim ;	// primeiro item
+  struct item_t *ult ;		// último item
+  int tamanho ;		// número de itens da lista
+};
 
 struct coord_t
 {
@@ -41,22 +84,22 @@ struct mission_t
     struct cjto_t *hab;
     int perigo; //ask
     struct coord_t *local;
+    int status;
 };
 
 struct ev_t{
     int tempo;
-    struct heroi_t heroi;
-    struct base_t base;
+    struct heroi_t *heroi;
+    struct base_t *base;
 };
 
-struct mundo_t
-{
+struct mundo_t{
     int nHerois;
-    int Herois[n_herois];
+    struct heroi_t *Herois[N_HEROIS];
     int nBases;
-    int Bases[n_bases];
+    struct base_t *Bases[N_BASES];
     int nMissoes;
-    int Missoes[n_missoes];
+    struct mission_t *Missoes[N_MISSOES];
     int nHabilidades;
     struct coord_t *tam_mundo;
     int relogio;
