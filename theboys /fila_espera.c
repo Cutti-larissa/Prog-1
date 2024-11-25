@@ -18,11 +18,10 @@ struct fila_t *fila_cria (int capacidade){
 }
 
 int fila_insere (struct fila_t *f, int elem){
-    struct nodo_t *heroi;
-    heroi=malloc(sizeof(struct nodo_t));
+    struct nodo_t *heroi = malloc(sizeof(struct nodo_t));
     if (!heroi)
         return(-1);
-    heroi->heroi_id = elem;
+    heroi->hero->id = elem;
     heroi->prox = NULL;
     if(!f->prim)
     {
@@ -42,7 +41,7 @@ int fila_insere (struct fila_t *f, int elem){
 int fila_retira (struct fila_t *f, int *elem){
     if (!f || !elem || f->prim)
         return(-1);
-    *elem = f->prim->heroi_id;
+    *elem = f->prim->hero->id;
     struct nodo_t *aux;
     aux = malloc(sizeof(struct nodo_t));
     if (!aux)
@@ -59,7 +58,7 @@ int fila_retira (struct fila_t *f, int *elem){
 int fila_primeiro (struct fila_t *f, int *elem){
     if(!f->prim)
         return(-1);
-    *elem=f->prim->heroi_id;
+    *elem=f->prim->hero->id;
     return(f->qtde);
 }
 
@@ -75,7 +74,7 @@ void fila_imprime (struct fila_t *f){
     struct nodo_t *aux = f->prim;
     for (i=1;i<=f->qtde;i++)
     {
-        printf("%d", aux->heroi_id);
+        printf("%d", aux->hero->id);
         if(i!=f->qtde)
         printf(" ");
         aux = aux->prox;
