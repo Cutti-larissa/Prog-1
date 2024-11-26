@@ -7,6 +7,7 @@
 #include "fprio.h"
 #include "lista.h"
 #include "eventos.h"
+#include "entidades.h"
 #include "fila_espera.h"
 
 #define T_INICIO 0
@@ -16,55 +17,6 @@
 #define N_HEROIS N_HABILIDADES * 5
 #define N_BASES N_HEROIS / 5
 #define N_MISSOES T_FIM_DO_MUNDO / 100
-
-struct ev_t{
-    int tempo;
-    struct heroi_t;
-    struct base_t;
-};
-
-struct coord_t{
-    int x;
-    int y;
-};
-
-struct heroi_t{
-    int id;
-    struct cjto_t *hab;
-    int paciencia;
-    int veloc;
-    int xp;
-    int base;
-    int status
-};
-
-struct base_t{
-    int id;
-    int lotação; //ask
-    struct cjto_t *pres;
-    struct fila_t *espera;
-    struct coord_t *local;
-};
-
-struct mission_t{
-    int id;
-    struct cjto_t *hab;
-    int perigo; //ask
-    struct coord_t *local;
-    int status;
-};
-
-struct mundo_t{
-    int nHerois;
-    struct heroi_t *Herois[N_HEROIS];
-    int nBases;
-    struct base_t *Bases[N_BASES];
-    int nMissoes;
-    struct mission_t *Missoes[N_MISSOES];
-    int nHabilidades;
-    struct coord_t *tam_mundo;
-    int relogio;
-};
 
 void inicia_mundo(struct mundo_t *W)
 {
@@ -155,9 +107,37 @@ void inicia_missoes(struct mundo_t *W)
     }
 }
 
+void inicia_eventos(struct mundo_t *W, struct fprio_t *LEF)
+{
+    for(int i=0; i<N_HEROIS; i++){ //para cada herói H:
+        struct heroi_t *H = W->Herois[i];
+        H->base = rand () % (N_BASES); //base  = número aleatório [0...N_BASES-1]
+        int tempo = rand() % (4321);  //tempo = número aleatório [0...4320]  // 4320 = 60*24*3 = 3 dias
+        struct ev_t *chega = malloc(sizeof(struct ev_t));  //criar e inserir na LEF o evento CHEGA (tempo, H, base)
+        chega->tempo = tempo;
+        chega->heroi = H;
+        chega->base = W->Bases[H->base];
+        fprio_insere(LEF,chega,0,chega->tempo);
+    }
+
+    for(int i=0; i<N_MISSOES; i++){ //para cada missão M:
+        int tempo = rand() % (T_FIM_DO_MUNDO); //tempo = número aleatório [0...T_FIM_DO_MUNDO]
+        struct ev_t *mission = malloc(sizeof(struct ev_t)); // criar e inserir na LEF o evento MISSÃO (tempo, M)
+        mission->tempo = tempo;
+        fprio_insere(LEF,mission,8,mission->tempo);
+    }
+
+    int tempo = T_FIM_DO_MUNDO; //tempo = T_FIM_DO_MUNDO
+    struct ev_t *fim = malloc(sizeof(struct ev_t));
+    fprio_insere(LEF,fim,9,tempo); //criar e inserir na LEF o evento FIM (tempo)
+}
+
 // programa principal
 int main ()
 {
+    int ev,prio,t;
+    struct heroi_t *H;
+    struct base_t *B;
     struct mundo_t *W = malloc(sizeof(struct mundo_t)); //iniciar as entidades e atributos do mundo
     inicia_mundo(W);
     inicia_herois(W);
@@ -167,20 +147,35 @@ int main ()
     struct fprio_t *LEF;
     LEF = fprio_cria(); // criar a lista de eventos futuros
 
-/*
-criar os eventos iniciais
-  
-relógio = 0
-repetir
-    ev = 1º evento da lista de eventos futuros
-    relógio = tempo (ev)
-    caso tipo (ev) seja:
-        EV1: executa evento 1
-        EV2: executa evento 2
-        EV3: executa evento 3
-        ...
-    fim
-até o fim da simulação
+    inicia_eventos(W,LEF); //criar os eventos iniciais
+    W->relogio = T_INICIO; //relógio = 0
+
+    while (W->relogio< T_FIM_DO_MUNDO){ //repetir até o fim da simulação
+        fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
+        W->relogio = prio; // relógio = tempo (ev)
+        switch (ev) //caso tipo (ev) seja:
+        {
+            case 0:
+                chega(t, H, B, LEF);
+            case 1:
+                espera(t, H, B, LEF);
+            case 2:
+                desiste(t, H, B, LEF, W);
+            case 3:
+                avisa(t, B, LEF);
+            case 4:
+                entra(t, H, B, LEF);
+            case 5:
+                sai(t, H, B, LEF, W);
+            case 6:
+                viaja(t, H, B, LEF, W);
+            case 7:
+                morre(t, H, B, LEF);
+            case 8:
+                //missao(t, M, LEF, W);
+        }
+    }
+/* 
   
 apresentar resultados*/
 
