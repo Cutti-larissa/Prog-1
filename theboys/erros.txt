@@ -1,0 +1,349 @@
+In file included from fila_espera.h:8,
+                 from eventos.h:4,
+                 from theboys.c:9:
+entidades.h:11:8: error: redefinition of ‘struct coord_t’
+   11 | struct coord_t
+      |        ^~~~~~~
+In file included from fprio.h:1,
+                 from theboys.c:7:
+entidades.h:11:8: note: originally defined here
+   11 | struct coord_t
+      |        ^~~~~~~
+entidades.h:17:8: error: redefinition of ‘struct heroi_t’
+   17 | struct heroi_t
+      |        ^~~~~~~
+entidades.h:17:8: note: originally defined here
+   17 | struct heroi_t
+      |        ^~~~~~~
+entidades.h:28:8: error: redefinition of ‘struct base_t’
+   28 | struct base_t
+      |        ^~~~~~
+entidades.h:28:8: note: originally defined here
+   28 | struct base_t
+      |        ^~~~~~
+entidades.h:37:8: error: redefinition of ‘struct mission_t’
+   37 | struct mission_t
+      |        ^~~~~~~~~
+entidades.h:37:8: note: originally defined here
+   37 | struct mission_t
+      |        ^~~~~~~~~
+entidades.h:46:8: error: redefinition of ‘struct ev_t’
+   46 | struct ev_t{
+      |        ^~~~
+entidades.h:46:8: note: originally defined here
+   46 | struct ev_t{
+      |        ^~~~
+entidades.h:52:8: error: redefinition of ‘struct mundo_t’
+   52 | struct mundo_t{
+      |        ^~~~~~~
+entidades.h:52:8: note: originally defined here
+   52 | struct mundo_t{
+      |        ^~~~~~~
+In file included from fprio.h:1,
+                 from eventos.h:5:
+entidades.h:11:8: error: redefinition of ‘struct coord_t’
+   11 | struct coord_t
+      |        ^~~~~~~
+entidades.h:11:8: note: originally defined here
+   11 | struct coord_t
+      |        ^~~~~~~
+entidades.h:17:8: error: redefinition of ‘struct heroi_t’
+   17 | struct heroi_t
+      |        ^~~~~~~
+entidades.h:17:8: note: originally defined here
+   17 | struct heroi_t
+      |        ^~~~~~~
+entidades.h:28:8: error: redefinition of ‘struct base_t’
+   28 | struct base_t
+      |        ^~~~~~
+entidades.h:28:8: note: originally defined here
+   28 | struct base_t
+      |        ^~~~~~
+entidades.h:37:8: error: redefinition of ‘struct mission_t’
+   37 | struct mission_t
+      |        ^~~~~~~~~
+entidades.h:37:8: note: originally defined here
+   37 | struct mission_t
+      |        ^~~~~~~~~
+entidades.h:46:8: error: redefinition of ‘struct ev_t’
+   46 | struct ev_t{
+      |        ^~~~
+entidades.h:46:8: note: originally defined here
+   46 | struct ev_t{
+      |        ^~~~
+entidades.h:52:8: error: redefinition of ‘struct mundo_t’
+   52 | struct mundo_t{
+      |        ^~~~~~~
+entidades.h:52:8: note: originally defined here
+   52 | struct mundo_t{
+      |        ^~~~~~~
+In file included from theboys.c:10:
+entidades.h:11:8: error: redefinition of ‘struct coord_t’
+   11 | struct coord_t
+      |        ^~~~~~~
+entidades.h:11:8: note: originally defined here
+   11 | struct coord_t
+      |        ^~~~~~~
+entidades.h:17:8: error: redefinition of ‘struct heroi_t’
+   17 | struct heroi_t
+      |        ^~~~~~~
+entidades.h:17:8: note: originally defined here
+   17 | struct heroi_t
+      |        ^~~~~~~
+entidades.h:28:8: error: redefinition of ‘struct base_t’
+   28 | struct base_t
+      |        ^~~~~~
+entidades.h:28:8: note: originally defined here
+   28 | struct base_t
+      |        ^~~~~~
+entidades.h:37:8: error: redefinition of ‘struct mission_t’
+   37 | struct mission_t
+      |        ^~~~~~~~~
+entidades.h:37:8: note: originally defined here
+   37 | struct mission_t
+      |        ^~~~~~~~~
+entidades.h:46:8: error: redefinition of ‘struct ev_t’
+   46 | struct ev_t{
+      |        ^~~~
+entidades.h:46:8: note: originally defined here
+   46 | struct ev_t{
+      |        ^~~~
+entidades.h:52:8: error: redefinition of ‘struct mundo_t’
+   52 | struct mundo_t{
+      |        ^~~~~~~
+entidades.h:52:8: note: originally defined here
+   52 | struct mundo_t{
+      |        ^~~~~~~
+In file included from fila_espera.h:8,
+                 from theboys.c:11:
+entidades.h:11:8: error: redefinition of ‘struct coord_t’
+   11 | struct coord_t
+      |        ^~~~~~~
+entidades.h:11:8: note: originally defined here
+   11 | struct coord_t
+      |        ^~~~~~~
+entidades.h:17:8: error: redefinition of ‘struct heroi_t’
+   17 | struct heroi_t
+      |        ^~~~~~~
+entidades.h:17:8: note: originally defined here
+   17 | struct heroi_t
+      |        ^~~~~~~
+entidades.h:28:8: error: redefinition of ‘struct base_t’
+   28 | struct base_t
+      |        ^~~~~~
+entidades.h:28:8: note: originally defined here
+   28 | struct base_t
+      |        ^~~~~~
+entidades.h:37:8: error: redefinition of ‘struct mission_t’
+   37 | struct mission_t
+      |        ^~~~~~~~~
+entidades.h:37:8: note: originally defined here
+   37 | struct mission_t
+      |        ^~~~~~~~~
+entidades.h:46:8: error: redefinition of ‘struct ev_t’
+   46 | struct ev_t{
+      |        ^~~~
+entidades.h:46:8: note: originally defined here
+   46 | struct ev_t{
+      |        ^~~~
+entidades.h:52:8: error: redefinition of ‘struct mundo_t’
+   52 | struct mundo_t{
+      |        ^~~~~~~
+entidades.h:52:8: note: originally defined here
+   52 | struct mundo_t{
+      |        ^~~~~~~
+theboys.c: In function ‘inicia_herois’:
+theboys.c:41:20: error: unused variable ‘hab_heroi’ [-Werror=unused-variable]
+   41 |     struct cjto_t *hab_heroi = cjto_cria(habilidades);
+      |                    ^~~~~~~~~
+theboys.c: In function ‘inicia_missoes’:
+theboys.c:96:20: error: comparison between pointer and integer [-Werror]
+   96 |         for (j=0; j<habi_rq; j++){
+      |                    ^
+theboys.c: In function ‘main’:
+theboys.c:154:27: error: passing argument 2 of ‘fprio_retira’ makes pointer from integer without a cast [-Werror=int-conversion]
+  154 |         fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
+      |                           ^~
+      |                           |
+      |                           int
+fprio.h:45:45: note: expected ‘int *’ but argument is of type ‘int’
+   45 | void *fprio_retira (struct fprio_t *f, int *tipo, int *prio, int *tempo, struct heroi_t *heroi, struct base_t *base);
+      |                                        ~~~~~^~~~
+theboys.c:154:31: error: passing argument 3 of ‘fprio_retira’ makes pointer from integer without a cast [-Werror=int-conversion]
+  154 |         fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
+      |                               ^~~~
+      |                               |
+      |                               int
+fprio.h:45:56: note: expected ‘int *’ but argument is of type ‘int’
+   45 | void *fprio_retira (struct fprio_t *f, int *tipo, int *prio, int *tempo, struct heroi_t *heroi, struct base_t *base);
+      |                                                   ~~~~~^~~~
+theboys.c:154:37: error: passing argument 4 of ‘fprio_retira’ makes pointer from integer without a cast [-Werror=int-conversion]
+  154 |         fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
+      |                                     ^
+      |                                     |
+      |                                     int
+fprio.h:45:67: note: expected ‘int *’ but argument is of type ‘int’
+   45 | void *fprio_retira (struct fprio_t *f, int *tipo, int *prio, int *tempo, struct heroi_t *heroi, struct base_t *base);
+      |                                                              ~~~~~^~~~~
+theboys.c:154:40: error: passing argument 5 of ‘fprio_retira’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  154 |         fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
+      |                                        ^
+      |                                        |
+      |                                        struct heroi_t *
+fprio.h:45:90: note: expected ‘struct heroi_t *’ but argument is of type ‘struct heroi_t *’
+   45 | void *fprio_retira (struct fprio_t *f, int *tipo, int *prio, int *tempo, struct heroi_t *heroi, struct base_t *base);
+      |                                                                          ~~~~~~~~~~~~~~~~^~~~~
+theboys.c:154:43: error: passing argument 6 of ‘fprio_retira’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  154 |         fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
+      |                                           ^
+      |                                           |
+      |                                           struct base_t *
+fprio.h:45:112: note: expected ‘struct base_t *’ but argument is of type ‘struct base_t *’
+   45 | void *fprio_retira (struct fprio_t *f, int *tipo, int *prio, int *tempo, struct heroi_t *heroi, struct base_t *base);
+      |                                                                                                 ~~~~~~~~~~~~~~~^~~~
+theboys.c:159:26: error: passing argument 2 of ‘chega’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  159 |                 chega(t, H, B, LEF);
+      |                          ^
+      |                          |
+      |                          struct heroi_t *
+eventos.h:7:35: note: expected ‘struct heroi_t *’ but argument is of type ‘struct heroi_t *’
+    7 | void chega(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF); //tipo 0
+      |                   ~~~~~~~~~~~~~~~~^
+theboys.c:159:29: error: passing argument 3 of ‘chega’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  159 |                 chega(t, H, B, LEF);
+      |                             ^
+      |                             |
+      |                             struct base_t *
+eventos.h:7:53: note: expected ‘struct base_t *’ but argument is of type ‘struct base_t *’
+    7 | void chega(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF); //tipo 0
+      |                                      ~~~~~~~~~~~~~~~^
+theboys.c:162:27: error: passing argument 2 of ‘espera’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  162 |                 espera(t, H, B, LEF);
+      |                           ^
+      |                           |
+      |                           struct heroi_t *
+eventos.h:9:36: note: expected ‘struct heroi_t *’ but argument is of type ‘struct heroi_t *’
+    9 | void espera(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF); //tipo 1
+      |                    ~~~~~~~~~~~~~~~~^
+theboys.c:162:30: error: passing argument 3 of ‘espera’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  162 |                 espera(t, H, B, LEF);
+      |                              ^
+      |                              |
+      |                              struct base_t *
+eventos.h:9:54: note: expected ‘struct base_t *’ but argument is of type ‘struct base_t *’
+    9 | void espera(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF); //tipo 1
+      |                                       ~~~~~~~~~~~~~~~^
+theboys.c:165:28: error: passing argument 2 of ‘desiste’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  165 |                 desiste(t, H, B, LEF, W);
+      |                            ^
+      |                            |
+      |                            struct heroi_t *
+eventos.h:11:37: note: expected ‘struct heroi_t *’ but argument is of type ‘struct heroi_t *’
+   11 | void desiste(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W); //tipo 2
+      |                     ~~~~~~~~~~~~~~~~^
+theboys.c:165:31: error: passing argument 3 of ‘desiste’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  165 |                 desiste(t, H, B, LEF, W);
+      |                               ^
+      |                               |
+      |                               struct base_t *
+eventos.h:11:55: note: expected ‘struct base_t *’ but argument is of type ‘struct base_t *’
+   11 | void desiste(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W); //tipo 2
+      |                                        ~~~~~~~~~~~~~~~^
+theboys.c:165:39: error: passing argument 5 of ‘desiste’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  165 |                 desiste(t, H, B, LEF, W);
+      |                                       ^
+      |                                       |
+      |                                       struct mundo_t *
+eventos.h:11:95: note: expected ‘struct mundo_t *’ but argument is of type ‘struct mundo_t *’
+   11 | void desiste(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W); //tipo 2
+      |                                                                               ~~~~~~~~~~~~~~~~^
+theboys.c:168:26: error: passing argument 2 of ‘avisa’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  168 |                 avisa(t, B, LEF);
+      |                          ^
+      |                          |
+      |                          struct base_t *
+eventos.h:13:34: note: expected ‘struct base_t *’ but argument is of type ‘struct base_t *’
+   13 | void avisa(int t, struct base_t *B, struct fprio_t *LEF); //tipo 3
+      |                   ~~~~~~~~~~~~~~~^
+theboys.c:171:26: error: passing argument 2 of ‘entra’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  171 |                 entra(t, H, B, LEF);
+      |                          ^
+      |                          |
+      |                          struct heroi_t *
+eventos.h:15:35: note: expected ‘struct heroi_t *’ but argument is of type ‘struct heroi_t *’
+   15 | void entra(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF); //tipo 4
+      |                   ~~~~~~~~~~~~~~~~^
+theboys.c:171:29: error: passing argument 3 of ‘entra’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  171 |                 entra(t, H, B, LEF);
+      |                             ^
+      |                             |
+      |                             struct base_t *
+eventos.h:15:53: note: expected ‘struct base_t *’ but argument is of type ‘struct base_t *’
+   15 | void entra(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF); //tipo 4
+      |                                      ~~~~~~~~~~~~~~~^
+theboys.c:174:24: error: passing argument 2 of ‘sai’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  174 |                 sai(t, H, B, LEF, W);
+      |                        ^
+      |                        |
+      |                        struct heroi_t *
+eventos.h:17:33: note: expected ‘struct heroi_t *’ but argument is of type ‘struct heroi_t *’
+   17 | void sai(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W); //tipo 5
+      |                 ~~~~~~~~~~~~~~~~^
+theboys.c:174:27: error: passing argument 3 of ‘sai’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  174 |                 sai(t, H, B, LEF, W);
+      |                           ^
+      |                           |
+      |                           struct base_t *
+eventos.h:17:51: note: expected ‘struct base_t *’ but argument is of type ‘struct base_t *’
+   17 | void sai(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W); //tipo 5
+      |                                    ~~~~~~~~~~~~~~~^
+theboys.c:174:35: error: passing argument 5 of ‘sai’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  174 |                 sai(t, H, B, LEF, W);
+      |                                   ^
+      |                                   |
+      |                                   struct mundo_t *
+eventos.h:17:91: note: expected ‘struct mundo_t *’ but argument is of type ‘struct mundo_t *’
+   17 | void sai(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W); //tipo 5
+      |                                                                           ~~~~~~~~~~~~~~~~^
+theboys.c:177:26: error: passing argument 2 of ‘viaja’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  177 |                 viaja(t, H, B, LEF, W);
+      |                          ^
+      |                          |
+      |                          struct heroi_t *
+eventos.h:19:35: note: expected ‘struct heroi_t *’ but argument is of type ‘struct heroi_t *’
+   19 | void viaja(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W); //tipo 6
+      |                   ~~~~~~~~~~~~~~~~^
+theboys.c:177:29: error: passing argument 3 of ‘viaja’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  177 |                 viaja(t, H, B, LEF, W);
+      |                             ^
+      |                             |
+      |                             struct base_t *
+eventos.h:19:53: note: expected ‘struct base_t *’ but argument is of type ‘struct base_t *’
+   19 | void viaja(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W); //tipo 6
+      |                                      ~~~~~~~~~~~~~~~^
+theboys.c:177:37: error: passing argument 5 of ‘viaja’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  177 |                 viaja(t, H, B, LEF, W);
+      |                                     ^
+      |                                     |
+      |                                     struct mundo_t *
+eventos.h:19:93: note: expected ‘struct mundo_t *’ but argument is of type ‘struct mundo_t *’
+   19 | void viaja(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W); //tipo 6
+      |                                                                             ~~~~~~~~~~~~~~~~^
+theboys.c:180:26: error: passing argument 2 of ‘morre’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  180 |                 morre(t, H, B, LEF);
+      |                          ^
+      |                          |
+      |                          struct heroi_t *
+eventos.h:21:35: note: expected ‘struct heroi_t *’ but argument is of type ‘struct heroi_t *’
+   21 | void morre(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF); //tipo 7
+      |                   ~~~~~~~~~~~~~~~~^
+theboys.c:180:29: error: passing argument 3 of ‘morre’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  180 |                 morre(t, H, B, LEF);
+      |                             ^
+      |                             |
+      |                             struct base_t *
+eventos.h:21:53: note: expected ‘struct base_t *’ but argument is of type ‘struct base_t *’
+   21 | void morre(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF); //tipo 7
+      |                                      ~~~~~~~~~~~~~~~^
+cc1: all warnings being treated as errors
+make: *** [<embutido>: theboys.o] Erro 1
