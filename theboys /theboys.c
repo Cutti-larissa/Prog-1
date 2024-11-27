@@ -44,7 +44,7 @@ void chega(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF) //ti
 
 void espera(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF) //tipo 1
 {
-    fila_insere(B->espera,H); //adiciona H ao fim da fila de espera de B
+    fila_insere(B->espera, H); //adiciona H ao fim da fila de espera de B
     struct ev_t *avisa = malloc(sizeof(struct ev_t)); //cria e insere na LEF o evento AVISA (agora, B)
     avisa->tempo = t;
     avisa->base = B;
