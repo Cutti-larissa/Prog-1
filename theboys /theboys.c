@@ -38,14 +38,13 @@ void inicia_herois(struct mundo_t *W)
     struct cjto_t *habi = malloc (sizeof(struct cjto_t));
     
     int habilidades = rand () % (3 - 1 + 1) + 1;
-    struct cjto_t *hab_heroi = cjto_cria(habilidades);
     
     heroi->id = i; //id = número sequencial [0...N_HEROIS-1]
     heroi->xp = 0; //experiência = 0
     heroi->status = 1; //heroi vivo
     heroi->paciencia = rand() % (101); //paciência = número aleatório [0...100]
     heroi->veloc = rand () % (5000 - 50 + 1) + 50; //velocidade  = número aleatório [50...5000] (em metros/minuto = 3 Km/h a 300 Km/h)
-    habi = cjto_cria(rand()% (3 - 1 + 1) + 1);
+    habi = cjto_cria(habilidades);
     int j;
     for (j=0; j<habilidades; j++){
         int h;
@@ -91,9 +90,10 @@ void inicia_missoes(struct mundo_t *W)
         missao->id = i; //id = número sequencial [0...N_MISSOES-1]
         missao->local->x = rand() % (20000); //local = par de números aleatórios [0...N_TAMANHO_MUNDO-1]
         missao->local->y = rand() % (20000);
-        habi_rq = cjto_cria(rand() % (10 - 6 + 1) + 1);
+        int habis = rand() % (10 - 6 + 1) + 1;
+        habi_rq = cjto_cria(habis);
         int j;
-        for (j=0; j<habi_rq; j++){
+        for (j=0; j<habis; j++){
             int h;
             h = rand () % (10);
             if (cjto_pertence(habi_rq, h))
@@ -151,26 +151,34 @@ int main ()
     W->relogio = T_INICIO; //relógio = 0
 
     while (W->relogio< T_FIM_DO_MUNDO){ //repetir até o fim da simulação
-        fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
+        fprio_retira(LEF, &ev, &prio, &t, H, B); //ev = 1º evento da lista de eventos futuros
         W->relogio = prio; // relógio = tempo (ev)
         switch (ev) //caso tipo (ev) seja:
         {
             case 0:
                 chega(t, H, B, LEF);
+                break;
             case 1:
                 espera(t, H, B, LEF);
+                break;
             case 2:
                 desiste(t, H, B, LEF, W);
+                break;
             case 3:
                 avisa(t, B, LEF);
+                break;
             case 4:
                 entra(t, H, B, LEF);
+                break;
             case 5:
                 sai(t, H, B, LEF, W);
+                break;
             case 6:
                 viaja(t, H, B, LEF, W);
+                break;
             case 7:
                 morre(t, H, B, LEF);
+                break;
             case 8:
                 //missao(t, M, LEF, W);
         }
