@@ -1,5 +1,9 @@
 #include "conjunto.h"
 
+
+#ifndef ENTI
+#define ENTI 
+
 #define T_INICIO 0
 #define T_FIM_DO_MUNDO 525600
 #define N_TAMANHO_MUNDO 20000
@@ -104,3 +108,5 @@ struct mundo_t{
     struct coord_t *tam_mundo;
     int relogio;
 };
+
+#endif
