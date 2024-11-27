@@ -1,56 +1,13 @@
 theboys.c: In function ‘main’:
-theboys.c:154:27: error: passing argument 2 of ‘fprio_retira’ makes pointer from integer without a cast [-Werror=int-conversion]
-  154 |         fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
-      |                           ^~
-      |                           |
-      |                           int
-In file included from theboys.c:7:
-fprio.h:45:45: note: expected ‘int *’ but argument is of type ‘int’
-   45 | void *fprio_retira (struct fprio_t *f, int *tipo, int *prio, int *tempo, struct heroi_t *heroi, struct base_t *base);
-      |                                        ~~~~~^~~~
-theboys.c:154:31: error: passing argument 3 of ‘fprio_retira’ makes pointer from integer without a cast [-Werror=int-conversion]
-  154 |         fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
-      |                               ^~~~
-      |                               |
-      |                               int
-fprio.h:45:56: note: expected ‘int *’ but argument is of type ‘int’
-   45 | void *fprio_retira (struct fprio_t *f, int *tipo, int *prio, int *tempo, struct heroi_t *heroi, struct base_t *base);
-      |                                                   ~~~~~^~~~
-theboys.c:154:37: error: passing argument 4 of ‘fprio_retira’ makes pointer from integer without a cast [-Werror=int-conversion]
-  154 |         fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
-      |                                     ^
-      |                                     |
-      |                                     int
-fprio.h:45:67: note: expected ‘int *’ but argument is of type ‘int’
-   45 | void *fprio_retira (struct fprio_t *f, int *tipo, int *prio, int *tempo, struct heroi_t *heroi, struct base_t *base);
-      |                                                              ~~~~~^~~~~
-theboys.c:154:9: error: ‘t’ may be used uninitialized [-Werror=maybe-uninitialized]
-  154 |         fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-theboys.c:138:17: note: ‘t’ was declared here
-  138 |     int ev,prio,t;
-      |                 ^
-theboys.c:154:9: error: ‘prio’ may be used uninitialized [-Werror=maybe-uninitialized]
-  154 |         fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-theboys.c:138:12: note: ‘prio’ was declared here
-  138 |     int ev,prio,t;
-      |            ^~~~
-theboys.c:154:9: error: ‘ev’ may be used uninitialized [-Werror=maybe-uninitialized]
-  154 |         fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-theboys.c:138:9: note: ‘ev’ was declared here
-  138 |     int ev,prio,t;
-      |         ^~
 theboys.c:154:9: error: ‘H’ may be used uninitialized [-Werror=maybe-uninitialized]
-  154 |         fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  154 |         fprio_retira(LEF, &ev, &prio, &t, H, B); //ev = 1º evento da lista de eventos futuros
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 theboys.c:139:21: note: ‘H’ was declared here
   139 |     struct heroi_t *H;
       |                     ^
 theboys.c:154:9: error: ‘B’ may be used uninitialized [-Werror=maybe-uninitialized]
-  154 |         fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  154 |         fprio_retira(LEF, &ev, &prio, &t, H, B); //ev = 1º evento da lista de eventos futuros
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 theboys.c:140:20: note: ‘B’ was declared here
   140 |     struct base_t *B;
       |                    ^
