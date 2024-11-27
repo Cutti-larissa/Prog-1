@@ -1,15 +1,90 @@
-theboys.c: In function ‘main’:
-theboys.c:154:9: error: ‘H’ may be used uninitialized [-Werror=maybe-uninitialized]
-  154 |         fprio_retira(LEF, &ev, &prio, &t, H, B); //ev = 1º evento da lista de eventos futuros
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-theboys.c:139:21: note: ‘H’ was declared here
-  139 |     struct heroi_t *H;
-      |                     ^
-theboys.c:154:9: error: ‘B’ may be used uninitialized [-Werror=maybe-uninitialized]
-  154 |         fprio_retira(LEF, &ev, &prio, &t, H, B); //ev = 1º evento da lista de eventos futuros
-      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-theboys.c:140:20: note: ‘B’ was declared here
-  140 |     struct base_t *B;
-      |                    ^
+theboys.c: In function ‘chega’:
+theboys.c:24:30: error: ‘struct base_t’ has no member named ‘lotação’
+   24 |     if ((cjto_card(B->pres)<B->lotação) && (fila_tamanho(B->espera)==0) ) // se há vagas em B e a fila de espera em B está vazia:
+      |                              ^~
+theboys.c: In function ‘espera’:
+theboys.c:47:27: error: passing argument 2 of ‘fila_insere’ makes integer from pointer without a cast [-Werror=int-conversion]
+   47 |     fila_insere(B->espera,H); //adiciona H ao fim da fila de espera de B
+      |                           ^
+      |                           |
+      |                           struct heroi_t *
+In file included from theboys.c:8:
+fila_espera.h:36:40: note: expected ‘int’ but argument is of type ‘struct heroi_t *’
+   36 | int fila_insere (struct fila_t *f, int elem);
+      |                                    ~~~~^~~~
+theboys.c: In function ‘desiste’:
+theboys.c:57:13: error: initialization of ‘int’ from ‘struct base_t *’ makes integer from pointer without a cast [-Werror=int-conversion]
+   57 |     int D = W->Bases[dest];
+      |             ^
+theboys.c:61:17: error: assignment to ‘struct base_t *’ from ‘int’ makes pointer from integer without a cast [-Werror=int-conversion]
+   61 |     viaja->base = D;
+      |                 ^
+theboys.c:54:55: error: unused parameter ‘B’ [-Werror=unused-parameter]
+   54 | void desiste(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W) //tipo 2
+      |                                        ~~~~~~~~~~~~~~~^
+theboys.c: In function ‘avisa’:
+theboys.c:67:35: error: ‘struct base_t’ has no member named ‘lotação’
+   67 |     while (((cjto_card(B->pres))<B->lotação) && (fila_tamanho(B->espera)>0))//enquanto houver vaga em B e houver heróis esperando na fila:
+      |                                   ^~
+theboys.c:70:32: error: passing argument 2 of ‘fila_retira’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+   70 |         fila_retira(B->espera, HN);//retira primeiro herói (H') da fila de B
+      |                                ^~
+      |                                |
+      |                                struct heroi_t *
+fila_espera.h:41:41: note: expected ‘int *’ but argument is of type ‘struct heroi_t *’
+   41 | int fila_retira (struct fila_t *f, int *elem);
+      |                                    ~~~~~^~~~
+theboys.c:71:30: error: passing argument 2 of ‘cjto_insere’ makes integer from pointer without a cast [-Werror=int-conversion]
+   71 |         cjto_insere(B->pres, HN); //adiciona H' ao conjunto de heróis presentes em B
+      |                              ^~
+      |                              |
+      |                              struct heroi_t *
+In file included from theboys.c:6:
+conjunto.h:41:40: note: expected ‘int’ but argument is of type ‘struct heroi_t *’
+   41 | int cjto_insere (struct cjto_t *c, int item) ;
+      |                                    ~~~~^~~~
+theboys.c: In function ‘sai’:
+theboys.c:93:25: error: passing argument 2 of ‘cjto_retira’ makes integer from pointer without a cast [-Werror=int-conversion]
+   93 |     cjto_retira(B->pres,H); //retira H do conjunto de heróis presentes em B
+      |                         ^
+      |                         |
+      |                         struct heroi_t *
+conjunto.h:45:40: note: expected ‘int’ but argument is of type ‘struct heroi_t *’
+   45 | int cjto_retira (struct cjto_t *c, int item) ;
+      |                                    ~~~~^~~~
+theboys.c:95:13: error: initialization of ‘int’ from ‘struct base_t *’ makes integer from pointer without a cast [-Werror=int-conversion]
+   95 |     int D = W->Bases[dest];
+      |             ^
+theboys.c:99:17: error: assignment to ‘struct base_t *’ from ‘int’ makes pointer from integer without a cast [-Werror=int-conversion]
+   99 |     viaja->base = D;
+      |                 ^
+theboys.c: In function ‘morre’:
+theboys.c:130:25: error: passing argument 2 of ‘cjto_retira’ makes integer from pointer without a cast [-Werror=int-conversion]
+  130 |     cjto_retira(B->pres,H); //retira H do conjunto de heróis presentes em B
+      |                         ^
+      |                         |
+      |                         struct heroi_t *
+conjunto.h:45:40: note: expected ‘int’ but argument is of type ‘struct heroi_t *’
+   45 | int cjto_retira (struct cjto_t *c, int item) ;
+      |                                    ~~~~^~~~
+theboys.c: In function ‘missao’:
+theboys.c:145:13: error: unused variable ‘dist’ [-Werror=unused-variable]
+  145 |         int dist = (M->local->x * B->local->x) + (M->local->y * B->local->y); //distância = distância cartesiana entre o local da missão e as bases do mundo
+      |             ^~~~
+theboys.c:158:55: error: passing argument 2 of ‘cjto_pertence’ makes integer from pointer without a cast [-Werror=int-conversion]
+  158 |                 if (cjto_pertence(BMP->pres, W->Herois[j]) == 1)
+      |                                              ~~~~~~~~~^~~
+      |                                                       |
+      |                                                       struct heroi_t *
+conjunto.h:53:42: note: expected ‘int’ but argument is of type ‘struct heroi_t *’
+   53 | int cjto_pertence (struct cjto_t *c, int item) ;
+      |                                      ~~~~^~~~
+theboys.c:154:24: error: unused variable ‘H_aux’ [-Werror=unused-variable]
+  154 |         struct cjto_t *H_aux = cjto_copia(BMP->pres);
+      |                        ^~~~~
+theboys.c: In function ‘fim’:
+theboys.c:180:14: error: unused parameter ‘t’ [-Werror=unused-parameter]
+  180 | void fim(int t) //tipo 9
+      |          ~~~~^
 cc1: all warnings being treated as errors
 make: *** [<embutido>: theboys.o] Erro 1
