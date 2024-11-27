@@ -50,19 +50,16 @@ int fprio_insere (struct fprio_t *f, void *item, int tipo, int prio)
   return(f->num);
 }
 
-void *fprio_retira (struct fprio_t *f, int *tipo, int *prio, int *tempo, struct heroi_t *heroi, struct base_t *base)
+void *fprio_retira (struct fprio_t *f, int *tipo, int *prio)
 {
   if(!f || !f->prim || !tipo || !prio)
     return(NULL);
   struct fpnodo_t *aux = f->prim; 
-  //void *item;
+  void *item;
   *tipo = f->prim->tipo;
   *prio = f->prim->prio;
-  *tempo = f->prim->item->tempo; //erro f
-  heroi = f->prim->item->heroi;
-  base = f->prim->item->base;
   f->prim = aux->prox;
-  //item = aux->item;
+  item = aux->item;
   f->num--;
   free(aux);
   return(item);
