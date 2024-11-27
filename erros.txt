@@ -1,7 +1,3 @@
-theboys.c: In function ‘inicia_herois’:
-theboys.c:41:20: error: unused variable ‘hab_heroi’ [-Werror=unused-variable]
-   41 |     struct cjto_t *hab_heroi = cjto_cria(habilidades);
-      |                    ^~~~~~~~~
 theboys.c: In function ‘inicia_missoes’:
 theboys.c:96:20: error: comparison between pointer and integer [-Werror]
    96 |         for (j=0; j<habi_rq; j++){
