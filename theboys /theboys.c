@@ -71,10 +71,10 @@ void inicia_bases(struct mundo_t *W)
         base->id = i; //id = número sequencial [0...N_BASES-1]
         base->local->x = rand() % (20000); //local = par de números aleatórios [0...N_TAMANHO_MUNDO-1]
         base->local->y = rand() % (20000);
-        base->lotação = rand() % (10 - 3 + 1) + 1; //lotação = número aleatório [3...10]
-        heros = cjto_cria(base->lotação);
+        base->max = rand() % (10 - 3 + 1) + 1; //lotação = número aleatório [3...10]
+        heros = cjto_cria(base->max);
         base->pres = heros; // presentes = conjunto vazio (com capacidade para armazenar IDs de heróis até a lotação da base)
-        esp = fila_cria(base->lotação);
+        esp = fila_cria(base->max);
         base->espera = esp;     
         W->Bases[i] = base;  
     }
