@@ -1,7 +1,3 @@
-theboys.c: In function ‘inicia_missoes’:
-theboys.c:96:20: error: comparison between pointer and integer [-Werror]
-   96 |         for (j=0; j<habi_rq; j++){
-      |                    ^
 theboys.c: In function ‘main’:
 theboys.c:154:27: error: passing argument 2 of ‘fprio_retira’ makes pointer from integer without a cast [-Werror=int-conversion]
   154 |         fprio_retira(LEF, ev, prio, t, H, B); //ev = 1º evento da lista de eventos futuros
