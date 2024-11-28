@@ -201,6 +201,7 @@ void inicia_herois(struct mundo_t *W)
   int i;
   for (i=0; i<N_HEROIS; i++)
   {
+    int habilidades;
     struct heroi_t *heroi = malloc (sizeof(struct heroi_t));
     if (!heroi)
         return;
@@ -210,7 +211,7 @@ void inicia_herois(struct mundo_t *W)
         return;
     }
     
-    int habilidades = rand () % (3 - 1 + 1) + 1;
+    habilidades = rand () % (3 - 1 + 1) + 1;
     
     heroi->id = i; //id = número sequencial [0...N_HEROIS-1]
     heroi->xp = 0; //experiência = 0
@@ -271,18 +272,25 @@ void inicia_missoes(struct mundo_t *W)
 {
     int i;
     for(i=0; i<N_MISSOES; i++){
+        int habis;
         struct mission_t *missao = malloc(sizeof(struct mission_t));
+        if (!missao)
+            return;
         struct cjto_t *habi_rq = malloc(sizeof(struct cjto_t));
+        if (!habi_rq){
+            free(missao);
+            return;
+        }
 
         missao->id = i; //id = número sequencial [0...N_MISSOES-1]
-        missao->local->x = rand() % (20000); //local = par de números aleatórios [0...N_TAMANHO_MUNDO-1]
-        missao->local->y = rand() % (20000);
-        int habis = rand() % (10 - 6 + 1) + 1;
+        missao->local->x = rand() % (N_TAMANHO_MUNDO); //local = par de números aleatórios [0...N_TAMANHO_MUNDO-1]
+        missao->local->y = rand() % (N_TAMANHO_MUNDO);
+        habis = rand() % (10 - 6 + 1) + 1;
         habi_rq = cjto_cria(habis);
         int j;
         for (j=0; j<habis; j++){
             int h;
-            h = rand () % (10);
+            h = rand () % (N_HABILIDADES);
             if (cjto_pertence(habi_rq, h))
                 j--;
             else 
@@ -290,39 +298,45 @@ void inicia_missoes(struct mundo_t *W)
         }
         missao->hab = habi_rq; //habilidades = conjunto com tamanho aleatório [6...10] de habilidades aleatórias
         missao->perigo = rand () % (101); //perigo      = número aleatório [0...100]
+        missao->status = 0;
         W->Missoes[i] = missao;
     }
+    printf("Criou missões\n");
 }
 
 void inicia_eventos(struct mundo_t *W, struct fprio_t *LEF)
 {
     for(int i=0; i<N_HEROIS; i++){ //para cada herói H:
         struct heroi_t *H = W->Herois[i];
-        H->base = rand () % (N_BASES); //base  = número aleatório [0...N_BASES-1]
+        int base = rand () % (N_BASES); //base  = número aleatório [0...N_BASES-1]
         int tempo = rand() % (4321);  //tempo = número aleatório [0...4320]  // 4320 = 60*24*3 = 3 dias
         struct ev_t *chega = malloc(sizeof(struct ev_t));  //criar e inserir na LEF o evento CHEGA (tempo, H, base)
+        if (!chega)
+            return;
         chega->tempo = tempo;
         chega->heroi = H;
-        chega->base = W->Bases[H->base];
-        fprio_insere(LEF,chega,0,chega->tempo);
+        chega->base = base;
+        fprio_insere(LEF,chega,0,chega->tempo); //qual melhor? chega->tempo ou tempo?
     }
 
     for(int i=0; i<N_MISSOES; i++){ //para cada missão M:
         int tempo = rand() % (T_FIM_DO_MUNDO); //tempo = número aleatório [0...T_FIM_DO_MUNDO]
         struct ev_t *mission = malloc(sizeof(struct ev_t)); // criar e inserir na LEF o evento MISSÃO (tempo, M)
         mission->tempo = tempo;
-        fprio_insere(LEF,mission,8,mission->tempo);
+        fprio_insere(LEF,mission,8,mission->tempo); //qual melhor? chega->tempo ou tempo?
     }
 
     int tempo = T_FIM_DO_MUNDO; //tempo = T_FIM_DO_MUNDO
     struct ev_t *fim = malloc(sizeof(struct ev_t));
     fprio_insere(LEF,fim,9,tempo); //criar e inserir na LEF o evento FIM (tempo)
+    printf("Eventos iniciados\n");
 }
 
 // programa principal
 int main ()
 {
-    int ev,prio,t;
+    int tipo_ev,tempo;
+    struct ev_t *ev;
     struct heroi_t *H;
     struct base_t *B;
     struct mundo_t *W = malloc(sizeof(struct mundo_t)); //iniciar as entidades e atributos do mundo
@@ -333,15 +347,18 @@ int main ()
     inicia_bases(W);
     inicia_missoes(W);
 
-    struct fprio_t *LEF;
+    struct fprio_t *LEF = malloc(sizeof(struct fprio_t);
+    if (!LEF){
+        //destroi_mundo(W);
+        return;
+    }
     LEF = fprio_cria(); // criar a lista de eventos futuros
 
     inicia_eventos(W,LEF); //criar os eventos iniciais
-    W->relogio = T_INICIO; //relógio = 0
 
     while (W->relogio< T_FIM_DO_MUNDO){ //repetir até o fim da simulação
-        fprio_retira(LEF, &ev, &prio, &t, H, B); //ev = 1º evento da lista de eventos futuros
-        W->relogio = prio; // relógio = tempo (ev)
+        fprio_retira(LEF, &ev, &tipo_ev, &tempo); //ev = 1º evento da lista de eventos futuros
+        W->relogio = tempo; // relógio = tempo (ev)
         switch (ev) //caso tipo (ev) seja:
         {
             case 0:
@@ -369,14 +386,15 @@ int main ()
                 morre(t, H, B, LEF);
                 break;
             case 8:
-                //missao(t, M, LEF, W);
+                missao(t, M, LEF, W);
+                break;
+            case 9:
+                fim(t);
+                break;
         }
     }
-/* 
-  
-apresentar resultados*/
 
-  // executar o laço de simulação
+  // executar o laço de simulação?
 
   // destruir o mundo
 
