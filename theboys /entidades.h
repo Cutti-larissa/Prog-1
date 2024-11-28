@@ -76,7 +76,7 @@ struct heroi_t
 struct base_t
 {
     int id;
-    int lotação; //ask
+    int max; //ask
     struct cjto_t *pres;
     struct fila_t *espera;
     struct coord_t *local;
