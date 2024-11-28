@@ -205,8 +205,10 @@ void inicia_herois(struct mundo_t *W)
     if (!heroi)
         return;
     struct cjto_t *habi = malloc (sizeof(struct cjto_t));
-    if (!habi)
+    if (!habi){
+        free(heroi);
         return;
+    }
     
     int habilidades = rand () % (3 - 1 + 1) + 1;
     
@@ -237,8 +239,19 @@ void inicia_bases(struct mundo_t *W)
     for(i=0; i<N_BASES; i++)
     {
         struct base_t *base = malloc (sizeof(struct base_t));
+        if (!base)
+            return;
         struct cjto_t *heros = malloc(sizeof(struct cjto_t));
+        if (!heros){
+            free(base);
+            return;
+        }
         struct lista_t *esp = malloc(sizeof(struct lista_t));
+        if (!esp){
+            free(base);
+            free(heros);
+            return;
+        }
 
         base->id = i; //id = número sequencial [0...N_BASES-1]
         base->local->x = rand() % (20000); //local = par de números aleatórios [0...N_TAMANHO_MUNDO-1]
