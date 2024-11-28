@@ -311,6 +311,8 @@ int main ()
     struct heroi_t *H;
     struct base_t *B;
     struct mundo_t *W = malloc(sizeof(struct mundo_t)); //iniciar as entidades e atributos do mundo
+    if (!H || !B || !W)
+        return -1;
     inicia_mundo(W);
     inicia_herois(W);
     inicia_bases(W);
