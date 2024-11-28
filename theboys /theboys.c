@@ -194,6 +194,7 @@ void inicia_mundo(struct mundo_t *W)
     W->tam_mundo->x = N_TAMANHO_MUNDO;
     W->tam_mundo->y = N_TAMANHO_MUNDO;
     W->relogio = 0;
+    printf("Mundo criado\n");
 }
 
 void inicia_herois(struct mundo_t *W)
