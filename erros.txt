@@ -1,90 +1,189 @@
 theboys.c: In function ‘chega’:
-theboys.c:24:30: error: ‘struct base_t’ has no member named ‘lotação’
-   24 |     if ((cjto_card(B->pres)<B->lotação) && (fila_tamanho(B->espera)==0) ) // se há vagas em B e a fila de espera em B está vazia:
-      |                              ^~
+theboys.c:24:20: error: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘struct heroi_t *’ [-Werror=format=]
+   24 |     printf("Heroi %d chegou na base %d\n", W->Herois[H->id], W->Bases[B->id]);
+      |                   ~^                       ~~~~~~~~~~~~~~~~
+      |                    |                                |
+      |                    int                              struct heroi_t *
+theboys.c:24:38: error: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘struct base_t *’ [-Werror=format=]
+   24 |     printf("Heroi %d chegou na base %d\n", W->Herois[H->id], W->Bases[B->id]);
+      |                                     ~^                       ~~~~~~~~~~~~~~~
+      |                                      |                               |
+      |                                      int                             struct base_t *
 theboys.c: In function ‘espera’:
-theboys.c:47:27: error: passing argument 2 of ‘fila_insere’ makes integer from pointer without a cast [-Werror=int-conversion]
-   47 |     fila_insere(B->espera,H); //adiciona H ao fim da fila de espera de B
-      |                           ^
-      |                           |
-      |                           struct heroi_t *
-In file included from theboys.c:8:
-fila_espera.h:36:40: note: expected ‘int’ but argument is of type ‘struct heroi_t *’
-   36 | int fila_insere (struct fila_t *f, int elem);
-      |                                    ~~~~^~~~
+theboys.c:52:20: error: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘struct heroi_t *’ [-Werror=format=]
+   52 |     printf("Heroi %d vai esperar\n", W->Herois[H->id]);
+      |                   ~^                 ~~~~~~~~~~~~~~~~
+      |                    |                          |
+      |                    int                        struct heroi_t *
 theboys.c: In function ‘desiste’:
-theboys.c:57:13: error: initialization of ‘int’ from ‘struct base_t *’ makes integer from pointer without a cast [-Werror=int-conversion]
-   57 |     int D = W->Bases[dest];
-      |             ^
-theboys.c:61:17: error: assignment to ‘struct base_t *’ from ‘int’ makes pointer from integer without a cast [-Werror=int-conversion]
-   61 |     viaja->base = D;
-      |                 ^
-theboys.c:54:55: error: unused parameter ‘B’ [-Werror=unused-parameter]
-   54 | void desiste(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W) //tipo 2
+theboys.c:64:20: error: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘struct heroi_t *’ [-Werror=format=]
+   64 |     printf("Heroi %d desistiu\n", W->Herois[H->id]);
+      |                   ~^              ~~~~~~~~~~~~~~~~
+      |                    |                       |
+      |                    int                     struct heroi_t *
+theboys.c:62:55: error: unused parameter ‘B’ [-Werror=unused-parameter]
+   62 | void desiste(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W) //tipo 2
       |                                        ~~~~~~~~~~~~~~~^
 theboys.c: In function ‘avisa’:
-theboys.c:67:35: error: ‘struct base_t’ has no member named ‘lotação’
-   67 |     while (((cjto_card(B->pres))<B->lotação) && (fila_tamanho(B->espera)>0))//enquanto houver vaga em B e houver heróis esperando na fila:
-      |                                   ^~
-theboys.c:70:32: error: passing argument 2 of ‘fila_retira’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-   70 |         fila_retira(B->espera, HN);//retira primeiro herói (H') da fila de B
-      |                                ^~
-      |                                |
-      |                                struct heroi_t *
-fila_espera.h:41:41: note: expected ‘int *’ but argument is of type ‘struct heroi_t *’
-   41 | int fila_retira (struct fila_t *f, int *elem);
-      |                                    ~~~~~^~~~
-theboys.c:71:30: error: passing argument 2 of ‘cjto_insere’ makes integer from pointer without a cast [-Werror=int-conversion]
-   71 |         cjto_insere(B->pres, HN); //adiciona H' ao conjunto de heróis presentes em B
-      |                              ^~
-      |                              |
-      |                              struct heroi_t *
-In file included from theboys.c:6:
-conjunto.h:41:40: note: expected ‘int’ but argument is of type ‘struct heroi_t *’
-   41 | int cjto_insere (struct cjto_t *c, int item) ;
-      |                                    ~~~~^~~~
+theboys.c:78:19: error: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘struct base_t *’ [-Werror=format=]
+   78 |     printf("Base %d foi avisada", W->Bases[B->id]);
+      |                  ~^               ~~~~~~~~~~~~~~~
+      |                   |                       |
+      |                   int                     struct base_t *
+theboys.c:82:33: error: passing argument 2 of ‘lista_retira’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+   82 |         lista_retira(B->espera, HN, 0);//retira primeiro herói (H') da fila de B
+      |                                 ^~
+      |                                 |
+      |                                 struct heroi_t *
+In file included from theboys.c:8:
+lista.h:44:45: note: expected ‘int *’ but argument is of type ‘struct heroi_t *’
+   44 | int lista_retira (struct lista_t *lst, int *item, int pos);
+      |                                        ~~~~~^~~~
+theboys.c: In function ‘entra’:
+theboys.c:96:20: error: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘struct heroi_t *’ [-Werror=format=]
+   96 |     printf("Heroi %d entrou na base %d", W->Herois[H->id], W->Bases[B->id]);
+      |                   ~^                     ~~~~~~~~~~~~~~~~
+      |                    |                              |
+      |                    int                            struct heroi_t *
+theboys.c:96:38: error: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘struct base_t *’ [-Werror=format=]
+   96 |     printf("Heroi %d entrou na base %d", W->Herois[H->id], W->Bases[B->id]);
+      |                                     ~^                     ~~~~~~~~~~~~~~~
+      |                                      |                             |
+      |                                      int                           struct base_t *
 theboys.c: In function ‘sai’:
-theboys.c:93:25: error: passing argument 2 of ‘cjto_retira’ makes integer from pointer without a cast [-Werror=int-conversion]
-   93 |     cjto_retira(B->pres,H); //retira H do conjunto de heróis presentes em B
-      |                         ^
-      |                         |
-      |                         struct heroi_t *
-conjunto.h:45:40: note: expected ‘int’ but argument is of type ‘struct heroi_t *’
-   45 | int cjto_retira (struct cjto_t *c, int item) ;
-      |                                    ~~~~^~~~
-theboys.c:95:13: error: initialization of ‘int’ from ‘struct base_t *’ makes integer from pointer without a cast [-Werror=int-conversion]
-   95 |     int D = W->Bases[dest];
-      |             ^
-theboys.c:99:17: error: assignment to ‘struct base_t *’ from ‘int’ makes pointer from integer without a cast [-Werror=int-conversion]
-   99 |     viaja->base = D;
-      |                 ^
+theboys.c:110:20: error: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘struct heroi_t *’ [-Werror=format=]
+  110 |     printf("Heroi %d saiu da Base %d", W->Herois[H->id], W->Bases[B->id]);
+      |                   ~^                   ~~~~~~~~~~~~~~~~
+      |                    |                            |
+      |                    int                          struct heroi_t *
+theboys.c:110:36: error: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘struct base_t *’ [-Werror=format=]
+  110 |     printf("Heroi %d saiu da Base %d", W->Herois[H->id], W->Bases[B->id]);
+      |                                   ~^                     ~~~~~~~~~~~~~~~
+      |                                    |                             |
+      |                                    int                           struct base_t *
+theboys.c: In function ‘viaja’:
+theboys.c:131:20: error: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘struct heroi_t *’ [-Werror=format=]
+  131 |     printf("Heroi %d está viajando para a base %d", W->Herois[H->id], W->Bases[D->id]);
+      |                   ~^                                ~~~~~~~~~~~~~~~~
+      |                    |                                         |
+      |                    int                                       struct heroi_t *
+theboys.c:131:49: error: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘struct base_t *’ [-Werror=format=]
+  131 |     printf("Heroi %d está viajando para a base %d", W->Herois[H->id], W->Bases[D->id]);
+      |                                                ~^                     ~~~~~~~~~~~~~~~
+      |                                                 |                             |
+      |                                                 int                           struct base_t *
 theboys.c: In function ‘morre’:
-theboys.c:130:25: error: passing argument 2 of ‘cjto_retira’ makes integer from pointer without a cast [-Werror=int-conversion]
-  130 |     cjto_retira(B->pres,H); //retira H do conjunto de heróis presentes em B
-      |                         ^
-      |                         |
-      |                         struct heroi_t *
-conjunto.h:45:40: note: expected ‘int’ but argument is of type ‘struct heroi_t *’
-   45 | int cjto_retira (struct cjto_t *c, int item) ;
-      |                                    ~~~~^~~~
+theboys.c:147:20: error: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘struct heroi_t *’ [-Werror=format=]
+  147 |     printf("Heroi %d morreu", W->Herois[H->id]);
+      |                   ~^          ~~~~~~~~~~~~~~~~
+      |                    |                   |
+      |                    int                 struct heroi_t *
+theboys.c: In function ‘acha_BMP’:
+theboys.c:158:19: error: unused parameter ‘dist’ [-Werror=unused-parameter]
+  158 | void acha_BMP(int dist[N_BASES], int i, struct base_t *BMP)
+      |               ~~~~^~~~~~~~~~~~~
+theboys.c:158:56: error: unused parameter ‘BMP’ [-Werror=unused-parameter]
+  158 | void acha_BMP(int dist[N_BASES], int i, struct base_t *BMP)
+      |                                         ~~~~~~~~~~~~~~~^~~
 theboys.c: In function ‘missao’:
-theboys.c:145:13: error: unused variable ‘dist’ [-Werror=unused-variable]
-  145 |         int dist = (M->local->x * B->local->x) + (M->local->y * B->local->y); //distância = distância cartesiana entre o local da missão e as bases do mundo
-      |             ^~~~
-theboys.c:158:55: error: passing argument 2 of ‘cjto_pertence’ makes integer from pointer without a cast [-Werror=int-conversion]
-  158 |                 if (cjto_pertence(BMP->pres, W->Herois[j]) == 1)
-      |                                              ~~~~~~~~~^~~
-      |                                                       |
-      |                                                       struct heroi_t *
+theboys.c:173:21: error: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘struct mission_t *’ [-Werror=format=]
+  173 |     printf("Missão %d foi tentada", W->Missoes[M->mission->id]);
+      |                    ~^               ~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                         |
+      |                     int                       struct mission_t *
+theboys.c:192:50: error: passing argument 2 of ‘cjto_pertence’ makes integer from pointer without a cast [-Werror=int-conversion]
+  192 |             if(cjto_pertence(BMP->pres, W->Herois[i])){
+      |                                         ~~~~~~~~~^~~
+      |                                                  |
+      |                                                  struct heroi_t *
+In file included from theboys.c:6:
 conjunto.h:53:42: note: expected ‘int’ but argument is of type ‘struct heroi_t *’
    53 | int cjto_pertence (struct cjto_t *c, int item) ;
       |                                      ~~~~^~~~
-theboys.c:154:24: error: unused variable ‘H_aux’ [-Werror=unused-variable]
-  154 |         struct cjto_t *H_aux = cjto_copia(BMP->pres);
-      |                        ^~~~~
 theboys.c: In function ‘fim’:
-theboys.c:180:14: error: unused parameter ‘t’ [-Werror=unused-parameter]
-  180 | void fim(int t) //tipo 9
-      |          ~~~~^
+theboys.c:224:22: error: character constant too long for its type [-Werror]
+  224 |             status = 'MORTO';
+      |                      ^~~~~~~
+theboys.c:224:22: error: overflow in conversion from ‘int’ to ‘char’ changes value from ‘1330795599’ to ‘79’ [-Werror=overflow]
+theboys.c:226:22: error: multi-character character constant [-Werror=multichar]
+  226 |             status = 'VIVO';
+      |                      ^~~~~~
+theboys.c:226:22: error: overflow in conversion from ‘int’ to ‘char’ changes value from ‘1447646799’ to ‘79’ [-Werror=overflow]
+theboys.c:227:28: error: format ‘%s’ expects argument of type ‘char *’, but argument 3 has type ‘int’ [-Werror=format=]
+  227 |         printf("HEROI %2d %s PAC %3d VEL %4d HABS [ ", H->id, status, H->paciencia, H->veloc);
+      |                           ~^                                  ~~~~~~
+      |                            |                                  |
+      |                            char *                             int
+      |                           %d
+theboys.c:233:88: error: passing argument 1 of ‘cjto_card’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  233 |         printf("BASE %2d LOT %2d FILA MAX %2d MISSOES %d\n", B->id, B->max, cjto_card(B->espera), B->mission);
+      |                                                                                       ~^~~~~~~~
+      |                                                                                        |
+      |                                                                                        struct lista_t *
+conjunto.h:49:31: note: expected ‘struct cjto_t *’ but argument is of type ‘struct lista_t *’
+   49 | int cjto_card (struct cjto_t *c) ;
+      |                ~~~~~~~~~~~~~~~^
+theboys.c:238:34: error: format ‘%f’ expects argument of type ‘double’, but argument 2 has type ‘int’ [-Werror=format=]
+  238 |     printf("TAXA MORTALIDADE: %.1f%%\n", mort);
+      |                               ~~~^       ~~~~
+      |                                  |       |
+      |                                  double  int
+      |                               %.1d
+theboys.c: In function ‘inicia_eventos’:
+theboys.c:372:21: error: assignment to ‘struct base_t *’ from ‘int’ makes pointer from integer without a cast [-Werror=int-conversion]
+  372 |         chega->base = base;
+      |                     ^
+theboys.c: In function ‘main’:
+theboys.c:427:9: error: ‘return’ with no value, in function returning non-void [-Werror=return-type]
+  427 |         return;
+      |         ^~~~~~
+theboys.c:410:5: note: declared here
+  410 | int main ()
+      |     ^~~~
+theboys.c: In function ‘missao’:
+theboys.c:182:5: error: ‘BMP’ is used uninitialized [-Werror=uninitialized]
+  182 |     acha_BMP(distancias, 0, BMP);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+theboys.c:175:24: note: ‘BMP’ was declared here
+  175 |     struct base_t *B, *BMP;
+      |                        ^~~
+theboys.c: In function ‘fim’:
+theboys.c:236:5: error: ‘cump’ is used uninitialized [-Werror=uninitialized]
+  236 |     printf("MISSOES CUMPRIDAS: %d/%d (%.1f%%)\n", cump, N_MISSOES, cump/(N_MISSOES*1.0)); //apresenta estatísticas das missões
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+theboys.c:218:11: note: ‘cump’ was declared here
+  218 |     int i,cump,min,max,mort;
+      |           ^~~~
+theboys.c:237:5: error: ‘min’ is used uninitialized [-Werror=uninitialized]
+  237 |     printf("TENTATIVAS/MISSAO: MIN %d, MAX %d, MEDIA %.1f\n", min, max, min/(max*1.0));
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+theboys.c:218:16: note: ‘min’ was declared here
+  218 |     int i,cump,min,max,mort;
+      |                ^~~
+theboys.c:237:81: error: ‘max’ is used uninitialized [-Werror=uninitialized]
+  237 |     printf("TENTATIVAS/MISSAO: MIN %d, MAX %d, MEDIA %.1f\n", min, max, min/(max*1.0));
+      |                                                                             ~~~~^~~~~
+theboys.c:218:20: note: ‘max’ was declared here
+  218 |     int i,cump,min,max,mort;
+      |                    ^~~
+theboys.c:238:5: error: ‘mort’ is used uninitialized [-Werror=uninitialized]
+  238 |     printf("TAXA MORTALIDADE: %.1f%%\n", mort);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+theboys.c:218:24: note: ‘mort’ was declared here
+  218 |     int i,cump,min,max,mort;
+      |                        ^~~~
+theboys.c: In function ‘main’:
+theboys.c:417:8: error: ‘H’ is used uninitialized [-Werror=uninitialized]
+  417 |     if (!H || !B || !W)
+      |        ^
+theboys.c:414:21: note: ‘H’ was declared here
+  414 |     struct heroi_t *H;
+      |                     ^
+theboys.c:417:12: error: ‘B’ may be used uninitialized [-Werror=maybe-uninitialized]
+  417 |     if (!H || !B || !W)
+      |         ~~~^~~~~
+theboys.c:415:20: note: ‘B’ was declared here
+  415 |     struct base_t *B;
+      |                    ^
 cc1: all warnings being treated as errors
 make: *** [<embutido>: theboys.o] Erro 1
