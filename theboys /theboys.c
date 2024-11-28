@@ -238,7 +238,7 @@ void inicia_bases(struct mundo_t *W)
     {
         struct base_t *base = malloc (sizeof(struct base_t));
         struct cjto_t *heros = malloc(sizeof(struct cjto_t));
-        struct fila_t *esp = malloc(sizeof(struct fila_t));
+        struct lista_t *esp = malloc(sizeof(struct lista_t));
 
         base->id = i; //id = número sequencial [0...N_BASES-1]
         base->local->x = rand() % (20000); //local = par de números aleatórios [0...N_TAMANHO_MUNDO-1]
