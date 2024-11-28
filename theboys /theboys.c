@@ -18,33 +18,42 @@
 
 void chega(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF) //tipo 0
 {
-    int espera = 0;
+    int esperar = 0;
+    int tamanho = lista_tamanho(B->espera)
     H->base = B->id; //atualiza base de H
-    if ((cjto_card(B->pres)<B->max) && (fila_tamanho(B->espera)==0) ) // se há vagas em B e a fila de espera em B está vazia:
-        espera = 1; // espera = true
+    printf("Heroi %d chegou na base %d\n", W->Herois[H->id], W->Bases[B->id]);
+    if ((cjto_card(B->pres)<B->max) && (tamanho==0) ) // se há vagas em B e a fila de espera em B está vazia:
+        esperar = 1; // espera = true
     else // senão:
-        if (H->paciencia > (10 * fila_tamanho(B->espera))) // espera = (paciência de H) > (10 * tamanho da fila em B)
-            espera = 1;
+        if (H->paciencia > (10 * tamanho)) // espera = (paciência de H) > (10 * tamanho da fila em B)
+            esperar = 1;
 
-    if (espera){ // se espera:
+    if (esperar){ // se espera:
         struct ev_t *espera = malloc(sizeof(struct ev_t));//cria e insere na LEF o evento ESPERA (agora, H, B)
+        if (!espera)
+            return;
         espera->tempo = t;
         espera->heroi = H;
         espera->base = B;
-        fprio_insere(LEF, espera, 1, espera->tempo);
+        fprio_insere(LEF, espera, 1, espera->tempo); //melhor t ou espera->tempo?
     }else{ //senão:
         struct ev_t *desiste = malloc(sizeof(struct ev_t)); //cria e insere na LEF o evento DESISTE (agora, H, B)
+        if (!desiste)
+            return;
         desiste->tempo = t;
         desiste->heroi = H;
         desiste->base = B;
-        fprio_insere(LEF, desiste, 2, desiste->tempo); //cria e insere na LEF o evento DESISTE (agora, H, B)
+        fprio_insere(LEF, desiste, 2, desiste->tempo); //melhor t ou espera->tempo?
     }
 }
 
 void espera(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF) //tipo 1
 {
-    fila_insere(B->espera, H); //adiciona H ao fim da fila de espera de B
+    printf("Heroi %d vai esperar\n", W->Herois[H->id]);
+    lista_insere(B->espera, H->id, -1); //adiciona H ao fim da fila de espera de B
     struct ev_t *avisa = malloc(sizeof(struct ev_t)); //cria e insere na LEF o evento AVISA (agora, B)
+    if (!avisa)
+        return;
     avisa->tempo = t;
     avisa->base = B;
     fprio_insere(LEF, avisa, 3, avisa->tempo);
@@ -52,6 +61,7 @@ void espera(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF) //t
 
 void desiste(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W) //tipo 2
 {
+    printf("Heroi %d desistiu\n", W->Herois[H->id]);
     int dest = rand () % (N_BASES); // escolhe uma base destino D aleatória
     int D = W->Bases[dest];
     struct ev_t *viaja = malloc(sizeof(struct ev_t)); //cria e insere na LEF o evento VIAJA (agora, H, D)
