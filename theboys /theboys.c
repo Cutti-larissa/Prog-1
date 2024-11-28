@@ -134,7 +134,7 @@ void morre(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF) //ti
     fprio_insere(LEF,avisa,3,avisa->tempo);
 }
 
-void missao(int t, struct mission_t *M, struct fprio_t *LEF, struct mundo_t *W) //tipo 8
+void missao(int t, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) //tipo 8
 {
     //calcula a distância de cada base ao local da missão M
     int achou = 0;
