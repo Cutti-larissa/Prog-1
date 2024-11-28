@@ -50,6 +50,7 @@ struct ev_t{
     int tempo;
     struct heroi_t *heroi;
     struct base_t *base;
+    struct mission_t *missao;
 };
 
 struct mundo_t{
