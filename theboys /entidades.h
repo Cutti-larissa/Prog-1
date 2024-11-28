@@ -1,6 +1,5 @@
 #include "conjunto.h"
 
-
 #ifndef ENTI
 #define ENTI 
 
