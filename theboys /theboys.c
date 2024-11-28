@@ -359,7 +359,7 @@ int main ()
     while (W->relogio< T_FIM_DO_MUNDO){ //repetir até o fim da simulação
         fprio_retira(LEF, &ev, &tipo_ev, &tempo); //ev = 1º evento da lista de eventos futuros
         W->relogio = tempo; // relógio = tempo (ev)
-        switch (ev) //caso tipo (ev) seja:
+        switch (tipo_ev) //caso tipo (ev) seja:
         {
             case 0:
                 chega(tempo, ev->heroi, ev->base, LEF);
