@@ -362,31 +362,31 @@ int main ()
         switch (ev) //caso tipo (ev) seja:
         {
             case 0:
-                chega(t, H, B, LEF);
+                chega(tempo, ev->heroi, ev->base, LEF);
                 break;
             case 1:
-                espera(t, H, B, LEF);
+                espera(tempo, ev->heroi, ev->base, LEF);
                 break;
             case 2:
-                desiste(t, H, B, LEF, W);
+                desiste(tempo, ev->heroi, ev->base, LEF, W);
                 break;
             case 3:
-                avisa(t, B, LEF);
+                avisa(tempo, ev->base, LEF);
                 break;
             case 4:
-                entra(t, H, B, LEF);
+                entra(tempo, ev->heroi, ev->base, LEF);
                 break;
             case 5:
-                sai(t, H, B, LEF, W);
+                sai(tempo, ev->heroi, ev->base, LEF, W);
                 break;
             case 6:
-                viaja(t, H, B, LEF, W);
+                viaja(tempo, ev->heroi, ev->base, LEF, W);
                 break;
             case 7:
-                morre(t, H, B, LEF);
+                morre(tempo, ev->heroi, ev->base, LEF);
                 break;
             case 8:
-                missao(t, M, LEF, W);
+                missao(tempo, ev, LEF, W);
                 break;
             case 9:
                 fim(t);
