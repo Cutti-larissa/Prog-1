@@ -202,7 +202,11 @@ void inicia_herois(struct mundo_t *W)
   for (i=0; i<N_HEROIS; i++)
   {
     struct heroi_t *heroi = malloc (sizeof(struct heroi_t));
+    if (!heroi)
+        return;
     struct cjto_t *habi = malloc (sizeof(struct cjto_t));
+    if (!habi)
+        return;
     
     int habilidades = rand () % (3 - 1 + 1) + 1;
     
@@ -224,6 +228,7 @@ void inicia_herois(struct mundo_t *W)
     heroi->hab = habi; //habilidades = conjunto com tamanho aleatório [1...3] de habilidades aleatórias
     W->Herois[i] = heroi;
   }
+  printf("Herois criados\n");
 }
 
 void inicia_bases(struct mundo_t *W)
