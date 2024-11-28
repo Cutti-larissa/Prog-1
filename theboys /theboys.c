@@ -393,7 +393,7 @@ int main ()
                 break;
         }
     }
-
+    //estatisticas
   // executar o laço de simulação?
 
   // destruir o mundo
