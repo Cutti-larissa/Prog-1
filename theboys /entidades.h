@@ -11,50 +11,6 @@
 #define N_BASES N_HEROIS / 5
 #define N_MISSOES T_FIM_DO_MUNDO / 100
 
-struct fpnodo_t
-{
-  void *item ;			// item associado ao nodo
-  int   tipo ;			// tipo do item
-  int   prio ;			// prioridade do item
-  struct fpnodo_t *prox;	// próximo nodo
-};
-
-// descreve uma fila de prioridades
-struct fprio_t
-{
-  struct fpnodo_t *prim ;	// primeiro nodo da fila
-  int num ;			// número de itens na fila
-} ;
-
-struct nodo_t
-{
-  struct heroi_t *hero;
-  int *prox;
-};
-
-struct fila_t
-{
-  struct nodo_t *prim;
-  struct nodo_t *ult;
-  int capacidade;
-  int qtde;
-};
-
-struct item_t
-{
-  int valor ;			// valor do item
-  struct item_t *ant ;		// item anterior
-  struct item_t *prox ;	// próximo item
-} ;
-
-// estrutura de uma lista
-struct lista_t
-{
-  struct item_t *prim ;	// primeiro item
-  struct item_t *ult ;		// último item
-  int tamanho ;		// número de itens da lista
-};
-
 struct coord_t
 {
     int x;
