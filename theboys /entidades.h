@@ -78,7 +78,7 @@ struct base_t
     int id;
     int max; //ask
     struct cjto_t *pres;
-    struct fila_t *espera;
+    struct lista_t *espera;
     struct coord_t *local;
 };
 
