@@ -7,7 +7,6 @@
 #include "fprio.h"
 #include "lista.h"
 #include "entidades.h"
-#include "fila_espera.h"
 
 #define T_INICIO 0
 #define T_FIM_DO_MUNDO 525600
