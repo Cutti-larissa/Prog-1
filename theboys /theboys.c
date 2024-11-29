@@ -114,7 +114,7 @@ void inicia_eventos(struct mundo_t *W, struct fprio_t *LEF)
   for(int i=0; i<N_MISSOES; i++){ //para cada missão M:
     int tempo = rand() % (T_FIM_DO_MUNDO); //tempo = número aleatório [0...T_FIM_DO_MUNDO]
     struct ev_t *mission = malloc(sizeof(struct ev_t)); // criar e inserir na LEF o evento MISSÃO (tempo, M)
-    mission->missao = W->Bases[i]; //observar
+    mission->missao = W->Missoes[i]; //observar
     fprio_insere(LEF,mission,8,tempo);
   }
 
