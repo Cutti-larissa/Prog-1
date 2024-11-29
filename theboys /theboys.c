@@ -153,11 +153,11 @@ int main ()
   if (!W)
     return -1;
   struct fprio_t *LEF = malloc(sizeof(struct fprio_t));
-    if (!LEF)
-    {
-      free(W);
-      return -1;
-    }
+  if (!LEF)
+  {
+    free(W);
+    return -1;
+  }
 
   inicia_mundo(W);
   inicia_herois(W);
