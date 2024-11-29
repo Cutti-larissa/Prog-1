@@ -62,6 +62,7 @@ struct mundo_t{
   int nBases;
   struct base_t *Bases[N_BASES];
   int nMissoes;
+  int mCumpridas;
   struct mission_t *Missoes[N_MISSOES];
   int nHabilidades;
   struct coord_t *tam_mundo;
