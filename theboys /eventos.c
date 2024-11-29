@@ -82,7 +82,7 @@ void entra(int tempo, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, 
   sai->heroi = H;
   sai->base = B;
   fprio_insere(LEF, sai, 5, tempo + TPB);
-  printf("%6d: ENTRA HEROI %2d BASE %d (%2d/%2d) SAI %d", W->relogio, H->id, B->id, cjto_card(B->pres), B->max, sai->tempo);
+  printf("%6d: ENTRA HEROI %2d BASE %d (%2d/%2d) SAI %d", W->relogio, H->id, B->id, cjto_card(B->pres), B->max, tempo);
 }
 
 void sai(int tempo, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W)
@@ -156,8 +156,8 @@ struct cjto_t *acha_BMP(int dist[N_BASES], int a, struct base_t *BMP, struct cjt
 
 void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) //adicionar mensagens depuração
 {
-  M->missao->tentativa++;
-  printf("%6d: MISSAO %d TENT %d HAB REQ: [ ", W->relogio, M->missao->id, M->missao->tentativa);
+  M->missao->tentativas++;
+  printf("%6d: MISSAO %d TENT %d HAB REQ: [ ", W->relogio, M->missao->id, M->missao->tentativas);
   cjto_imprime(M->missao->hab);
   printf(" ]\n");
   int distancias[N_BASES]; //calcula a distância de cada base ao local da missão M
