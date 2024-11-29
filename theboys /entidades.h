@@ -26,6 +26,7 @@ struct heroi_t
     int xp;
     int base;
     int status;
+    int morte;
 };
 
 struct base_t
