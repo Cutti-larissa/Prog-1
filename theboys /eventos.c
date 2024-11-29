@@ -134,24 +134,6 @@ int minimo_vetor(int dist[N_BASES], int a, int b){
   return (menor);
 }
 
-/*Acha a base mais próxima apta para realizar a missão,
-  caso a missão seja impossível retorna com BMP = NULL*/
-struct cjto_t *acha_BMP(int dist[N_BASES], int a, struct base_t **BMP, struct cjto_t *hab_rq, struct cjto_t *habilidades struct mundo_t *W) //chat
-{
-  if (a == N_BASES)
-    return (NULL);
-  int i = minimo_vetor(dist, a, N_BASES); //acha a base mais próxima
-  for (int l = 0; l<N_HEROIS; l++) //para cada heroi
-    if (cjto_pertence(W->Bases[i]->pres, l)) //se ele está presente na base
-      habilidades = cjto_uniao(habilidades, W->Herois[l]->hab); //adiciona as habilidades dele ao cjto de habilidades da base
-  if (cjto_iguais(hab_rq, habilidades)) // verifica se a base tem as habilidades necessárias
-  { 
-    BMP = W->Bases[i]; //se tem BMP = Base;   
-    return(habilidades);
-  }else //se não chama o algoritmo para o vetor começando da segunda posição acha_BMP(dist, i++, BMP)
-    return(acha_BMP(dist, a + 1, BMP, hab_rq, W));
-}
-
 void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) //adicionar mensagens depuração
 {
   M->missao->tentativas++;
@@ -167,9 +149,17 @@ void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) /
     distancias[i] = dist; //a distancia está no indice correspondente a sua base
   }
 
-  struct cjto_t *habilidades = malloc(sizeof(struct cjto_t));
-  acha_BMP(distancias, 0, BMP, M->missao->hab, struct cjto_t *habilidades, W); //encontra BMP = base mais próxima da missão cujos heróis possam cumpri-la 
-    
+  struct cjto_t *habilidades;
+  for (int m=0; m<N_BASES && !BMP; m++)
+  {
+    int menor = minimo_vetor(dist, m, N_BASES); //acha a base mais próxima
+    for (int l = 0; l<N_HEROIS; l++) //para cada heroi
+      if (cjto_pertence(W->Bases[i]->pres, l)) //se ele está presente na base
+        habilidades = cjto_uniao(habilidades, W->Herois[l]->hab); //adiciona as habilidades dele ao cjto de habilidades da base
+    if (cjto_iguais(hab_rq, habilidades)) // verifica se a base tem as habilidades necessárias
+      BMP = W->Bases[i]; //se tem BMP = Base;   
+}
+  
   if (BMP) //se houver uma BMP:
   {
     printf("%6d: MISSAO %d CUMPRIDA BASE %d HABS: [ ", W->relogio, M->missao->id, BMP->id);
@@ -188,14 +178,12 @@ void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) /
             struct ev_t *morre = malloc(sizeof(struct ev_t)); //cria e insere na LEF o evento MORRE (agora, H)
             morre->heroi = W->Herois[l];
             fprio_insere(LEF, morre, 7, tempo);
-          }else{ //senão:
+          }else //senão:
             W->Herois[l]->xp++; //incrementa a experiência de H
-            printf("%6d: MISSAO %d IMPOSSIVEL", W->relogio, M->missao->id);
-          }
       }
     }
   }else{ //senão:
-    printf("Missão adiada");
+     printf("%6d: MISSAO %d IMPOSSIVEL", W->relogio, M->missao->id);
     struct ev_t *mission = malloc(sizeof(struct ev_t)); //cria e insere na LEF o evento MISSAO (T + 24*60, M) para o dia seguinte
     mission->missao = M->missao;
     fprio_insere(LEF, mission, 8, tempo + 1440);
