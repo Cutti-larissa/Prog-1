@@ -1,3 +1,11 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "conjunto.h"
+#include "fprio.h"
+#include "lista.h"
+#include "entidades.h"
+#include "eventos.h"
+
 void chega(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W) //tipo 0
 {
     int esperar = 0;
