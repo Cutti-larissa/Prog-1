@@ -152,15 +152,15 @@ void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) /
   struct cjto_t *habilidades = cjto_cria(N_HABILIDADES);
   for (int m=0; m<N_BASES && !BMP; m++)
   {
-    int menor = minimo_vetor(dist, m, N_BASES); //acha a base mais próxima
+    int menor = minimo_vetor(distancias, m, N_BASES); //acha a base mais próxima
     for (int l = 0; l<N_HEROIS; l++) //para cada heroi
       if (cjto_pertence(W->Bases[menor]->pres, l)){ //se ele está presente na base
         struct cjto_t *aux = cjto_uniao(habilidades, W->Herois[l]->hab);//adiciona as habilidades dele ao cjto de habilidades da base
         cjto_destroi(habilidades);
         habilidades = aux;
       }
-    if (cjto_iguais(hab_rq, habilidades)) // verifica se a base tem as habilidades necessárias
-      BMP = W->Bases[i]; //se tem BMP = Base;   
+    if (cjto_iguais(M->missao->hab, habilidades)) // verifica se a base tem as habilidades necessárias
+      BMP = W->Bases[menor]; //se tem BMP = Base;   
 }
   
   if (BMP) //se houver uma BMP:
