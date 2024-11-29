@@ -149,13 +149,16 @@ void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) /
     distancias[i] = dist; //a distancia está no indice correspondente a sua base
   }
 
-  struct cjto_t *habilidades;
+  struct cjto_t *habilidades = cjto_cria(N_HABILIDADES);
   for (int m=0; m<N_BASES && !BMP; m++)
   {
     int menor = minimo_vetor(dist, m, N_BASES); //acha a base mais próxima
     for (int l = 0; l<N_HEROIS; l++) //para cada heroi
-      if (cjto_pertence(W->Bases[i]->pres, l)) //se ele está presente na base
-        habilidades = cjto_uniao(habilidades, W->Herois[l]->hab); //adiciona as habilidades dele ao cjto de habilidades da base
+      if (cjto_pertence(W->Bases[menor]->pres, l)){ //se ele está presente na base
+        struct cjto_t *aux = cjto_uniao(habilidades, W->Herois[l]->hab);//adiciona as habilidades dele ao cjto de habilidades da base
+        cjto_destroi(habilidades);
+        habilidades = aux;
+      }
     if (cjto_iguais(hab_rq, habilidades)) // verifica se a base tem as habilidades necessárias
       BMP = W->Bases[i]; //se tem BMP = Base;   
 }
@@ -183,7 +186,7 @@ void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) /
       }
     }
   }else{ //senão:
-     printf("%6d: MISSAO %d IMPOSSIVEL", W->relogio, M->missao->id);
+    printf("%6d: MISSAO %d IMPOSSIVEL", W->relogio, M->missao->id);
     struct ev_t *mission = malloc(sizeof(struct ev_t)); //cria e insere na LEF o evento MISSAO (T + 24*60, M) para o dia seguinte
     mission->missao = M->missao;
     fprio_insere(LEF, mission, 8, tempo + 1440);
