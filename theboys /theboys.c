@@ -7,7 +7,7 @@
 #include "fprio.h"
 #include "lista.h"
 #include "entidades.h"
-#include "eventos.h
+#include "eventos.h"
 
 void inicia_mundo(struct mundo_t *W)
 {
