@@ -194,7 +194,7 @@ int main ()
         viaja(tempo, ev->heroi, ev->base, LEF, W);
         break;
       case 7:
-        morre(tempo, ev->heroi, ev->base, ev->missao->id, LEF, W);
+        morre(tempo, ev->heroi, ev->base, LEF, W);
         break;
       case 8:
         missao(tempo, ev, LEF, W);
