@@ -12,9 +12,16 @@
 void inicia_mundo(struct mundo_t *W)
 {
   W->nHerois = N_HEROIS;
+  W->Herois = calloc(N_HEROIS, sizeof (struct heroi_t *));
   W->nBases = N_BASES;
+  W->Bases = calloc(N_BASES, sizeof (struct base_t *));
   W->nMissoes = N_MISSOES;
+  W->Missoes = calloc(N_MISSOES, sizeof (struct mission_t *));
   W->nHabilidades = N_HABILIDADES;
+  W->tam_mundo = malloc(sizeof(struct coord_t));
+  if (!W->tam_mundo){
+    printf("Erro ao alocar memória para o W->tam_mundo\n");
+    return;}
   W->tam_mundo->x = N_TAMANHO_MUNDO;
   W->tam_mundo->y = N_TAMANHO_MUNDO;
   W->relogio = T_INICIO;
@@ -141,29 +148,32 @@ void destroi_mundo(struct mundo_t *W)
     cjto_destroi(W->Missoes[i]->hab);
     free(W->Missoes[i]);
   }
+  free(W->Herois);
+  free(W->Bases);
+  free(W->Missoes);
+  free(W->tam_mundo);
   free(W);
 }
 
 // programa principal
 int main ()
 {
-  int tipo_ev, tempo, evt_trat = 0;
+  int tipo_ev, tempo, evt_trat;
   struct ev_t *ev;
   struct mundo_t *W = malloc(sizeof(struct mundo_t)); //iniciar as entidades e atributos do mundo
   if (!W)
     return -1;
   struct fprio_t *LEF = fprio_cria(); // criar a lista de eventos futuros
-  if (!LEF)
-  {
+  if (!LEF){
     free(W);
-    return -1;
-  }
+    return -1;}
 
   inicia_mundo(W);
   inicia_herois(W);
   inicia_bases(W);
   inicia_missoes(W);
   inicia_eventos(W,LEF); //criar os eventos iniciais
+  evt_trat = 0;
 
   while (W->relogio< T_FIM_DO_MUNDO){ //repetir até o fim da simulação //laço da simulação
     ev = fprio_retira(LEF, &tipo_ev, &tempo); //ev = 1º evento da lista de eventos futuros
