@@ -23,13 +23,13 @@ void chega(int tempo, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, 
     espera->heroi = H;
     espera->base = B;
     fprio_insere(LEF, espera, 1, tempo);
-    printf("%6d: CHEGA HEROI %2d BASE %d (%2d/%2d) ESPERA",W->relogio, H->id, B->id, cjto_card(B->pres), B->max);
+    printf("%6d: CHEGA HEROI %2d BASE %d (%2d/%2d) ESPERA\n",W->relogio, H->id, B->id, cjto_card(B->pres), B->max);
   }else{ //senão:
     struct ev_t *desiste = malloc(sizeof(struct ev_t)); //cria e insere na LEF o evento DESISTE (agora, H, B)
     desiste->heroi = H;
     desiste->base = B;
     fprio_insere(LEF, desiste, 2, tempo);
-    printf("%6d: CHEGA HEROI %2d BASE %d (%2d/%2d) DESISTE",W->relogio, H->id, B->id, cjto_card(B->pres), B->max);
+    printf("%6d: CHEGA HEROI %2d BASE %d (%2d/%2d) DESISTE\n",W->relogio, H->id, B->id, cjto_card(B->pres), B->max);
   }
 }
 
