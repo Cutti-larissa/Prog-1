@@ -32,17 +32,19 @@ struct heroi_t
 struct base_t
 {
   int id;
-  int max; //ask
+  int max; 
   struct cjto_t *pres;
   struct lista_t *espera;
   struct coord_t *local;
+  int fila_max;
+  int nMissoes;
 };
 
 struct mission_t
 {
   int id;
   struct cjto_t *hab;
-  int perigo; //ask
+  int perigo; 
   struct coord_t *local;
   int status;
   int tentativas;
