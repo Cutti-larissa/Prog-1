@@ -38,7 +38,7 @@ void espera(int tempo, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF,
   lista_insere(B->espera, H->id, -1); //adiciona H ao fim da fila de espera de B
   int tam_fila = lista_tamanho(B->espera);
   if (tam_fila > B->fila_max)
-      B->fila_max = tam_fila
+      B->fila_max = tam_fila;
   struct ev_t *avisa = malloc(sizeof(struct ev_t)); //cria e insere na LEF o evento AVISA (agora, B)
   avisa->base = B;
   fprio_insere(LEF, avisa, 3, tempo);
@@ -59,7 +59,7 @@ void desiste(int tempo, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF
 void avisa(int tempo, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W)
 {
   printf("%6d: AVISA PORTEIRO BASE %d (%2d/%2d) FILA [ ", W->relogio, B->id, cjto_card(B->pres), B->max);
-  lista_imprime(B->pres);
+  lista_imprime(B->espera);
   printf(" ]\n");
   while (((cjto_card(B->pres))<B->max) && (lista_tamanho(B->espera)>0))//enquanto houver vaga em B e houver heróis esperando na fila:
   {
@@ -82,7 +82,7 @@ void entra(int tempo, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, 
   sai->heroi = H;
   sai->base = B;
   fprio_insere(LEF, sai, 5, tempo + TPB);
-  printf("%6d: ENTRA HEROI %2d BASE %d (%2d/%2d) SAI %d", W->relogio, H->id, B->id, cjto_card(B->pres) B->max, sai->tempo);
+  printf("%6d: ENTRA HEROI %2d BASE %d (%2d/%2d) SAI %d", W->relogio, H->id, B->id, cjto_card(B->pres), B->max, sai->tempo);
 }
 
 void sai(int tempo, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W)
@@ -114,7 +114,7 @@ void viaja(int tempo, struct heroi_t *H, struct base_t *D, struct fprio_t *LEF, 
   printf("%6d: VIAJA HEROI %2d BASE %d BASE %d DIST %d VELOC %d CHEGA %d\n", W->relogio, H->id, B->id, D->id, dist, H->veloc, tempo + durac);
 }
 
-void morre(int tempo, struct heroi_t *H, struct base_t *B, int M, struct fprio_t *LEF, struct mundo_t *W)
+void morre(int tempo, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W)
 {
   cjto_retira(B->pres, H->id); //retira H do conjunto de heróis presentes em B
   H->status = 0; //muda o status de H para morto 
@@ -137,14 +137,14 @@ int minimo_vetor(int dist[N_BASES], int a, int b){
 
 /*Acha a base mais próxima apta para realizar a missão,
   caso a missão seja impossível retorna com BMP = NULL*/
-struct cjto_t *acha_BMP(int dist[N_BASES], int a, struct base_t *BMP, struct cjto_t *hab_rq, struct mundo_t *W)
+struct cjto_t *acha_BMP(int dist[N_BASES], int a, struct base_t *BMP, struct cjto_t *hab_rq, struct mundo_t *W) //chat
 {
   if (a == N_BASES)
     return (NULL);
   int i = minimo_vetor(dist, a, N_BASES); //acha a base mais próxima
   struct cjto_t *habilidades = malloc(sizeof(struct cjto_t));
   for (int l = 0; l<N_HEROIS; l++) //para cada heroi
-    if (cjto_pertence(W->Bases[i]->pres, l) //se ele está presente na base
+    if (cjto_pertence(W->Bases[i]->pres, l)) //se ele está presente na base
       habilidades = cjto_uniao(habilidades, W->Herois[l]->hab); //adiciona as habilidades dele ao cjto de habilidades da base
   if (cjto_iguais(hab_rq, habilidades)) // verifica se a base tem as habilidades necessárias
   { 
@@ -156,7 +156,7 @@ struct cjto_t *acha_BMP(int dist[N_BASES], int a, struct base_t *BMP, struct cjt
 
 void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) //adicionar mensagens depuração
 {
-  M->mission->tentativa++
+  M->missao->tentativa++;
   printf("%6d: MISSAO %d TENT %d HAB REQ: [ ", W->relogio, M->missao->id, M->missao->tentativa);
   cjto_imprime(M->missao->hab);
   printf(" ]\n");
@@ -180,7 +180,7 @@ void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) /
     BMP->nMissoes++;
     W->mCumpridas++;
     for (int l = 0; l<N_HEROIS; l++){ //para cada heroi
-      if (cjto_pertence(BMP->pres, l){ //se ele está presente na base
+      if (cjto_pertence(BMP->pres, l)){ //se ele está presente na base
           int risco = M->missao->perigo / (W->Herois[l]->paciencia + W->Herois[l]->xp + 1); //risco = perigo (M) / (paciência (H) + experiência (H) + 1.0) (float?)
           int aleat = rand () % (30);
           if (risco > aleat) //se risco > aleatório (0, 30): (0 - 29 ou 0 - 30?)
@@ -198,7 +198,7 @@ void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) /
   }else{ //senão:
     printf("Missão adiada");
     struct ev_t *mission = malloc(sizeof(struct ev_t)); //cria e insere na LEF o evento MISSAO (T + 24*60, M) para o dia seguinte
-    mission->missao = M;
+    mission->missao = M->missao;
     fprio_insere(LEF, mission, 8, tempo + 1440);
   }
 }
