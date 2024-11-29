@@ -7,7 +7,7 @@
 #include "entidades.h"
 #include "eventos.h"
 
-void chega(int t, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W)
+void chega(int tempo, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W)
 {
   int esperar = 0;
   int tam_fila = lista_tamanho(B->espera);
