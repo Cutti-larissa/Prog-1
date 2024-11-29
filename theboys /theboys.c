@@ -62,16 +62,23 @@ void inicia_bases(struct mundo_t *W)
   for(i=0; i<N_BASES; i++)
   {
     struct base_t *base = malloc (sizeof(struct base_t));
-    struct cjto_t *heros = malloc(sizeof(struct cjto_t));
-    struct lista_t *esp = malloc(sizeof(struct lista_t));
+    struct cjto_t *heros = cjto_cria(N_HEROIS); //conjunto que pode armazenar valores de 0 até N_HEROIS - 1
+    struct lista_t *esp = lista_cria();
+    if (!base || !heros || !esp){
+      printf("Erro ao tentar alocar memória\n");
+      return;}
     
     base->id = i; //id = número sequencial [0...N_BASES-1]
+    base->local = malloc(sizeof(struct coord_t));
+    if (!base->local){
+      free(base);
+      cjto_destroi(heros);
+      lista_destroi(esp);
+      return;}
     base->local->x = rand() % (N_TAMANHO_MUNDO); //local = par de números aleatórios [0...N_TAMANHO_MUNDO-1]
     base->local->y = rand() % (N_TAMANHO_MUNDO); // ou usar W->tam_mundo
     base->max = rand() % (10 - 3 + 1) + 1; //lotação = número aleatório [3...10]
-    heros = cjto_cria(N_HEROIS); //conjunto que pode armazenar valores de 0 até N_HEROIS - 1
     base->pres = heros; // presentes = conjunto vazio (com capacidade para armazenar IDs de heróis até a lotação da base) (?)
-    esp = lista_cria();
     base->espera = esp;     
     W->Bases[i] = base;  
   }
@@ -87,6 +94,7 @@ void inicia_missoes(struct mundo_t *W)
     struct cjto_t *habi_rq = malloc(sizeof(struct cjto_t));
     
     missao->id = i; //id = número sequencial [0...N_MISSOES-1]
+    missao->local = malloc(sizeof(struct coord_t));
     missao->local->x = rand() % (N_TAMANHO_MUNDO); //local = par de números aleatórios [0...N_TAMANHO_MUNDO-1]
     missao->local->y = rand() % (N_TAMANHO_MUNDO);
     habis = rand() % (10 - 6 + 1) + 1;
