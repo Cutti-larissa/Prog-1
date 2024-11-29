@@ -147,12 +147,12 @@ void destroi_mundo(struct mundo_t *W)
 // programa principal
 int main ()
 {
-  int tipo_ev, tempo, evt_trat;
+  int tipo_ev, tempo, evt_trat = 0;
   struct ev_t *ev;
   struct mundo_t *W = malloc(sizeof(struct mundo_t)); //iniciar as entidades e atributos do mundo
   if (!W)
     return -1;
-  struct fprio_t *LEF = malloc(sizeof(struct fprio_t));
+  struct fprio_t *LEF = fprio_cria(); // criar a lista de eventos futuros
   if (!LEF)
   {
     free(W);
@@ -163,7 +163,6 @@ int main ()
   inicia_herois(W);
   inicia_bases(W);
   inicia_missoes(W);
-  LEF = fprio_cria(); // criar a lista de eventos futuros
   inicia_eventos(W,LEF); //criar os eventos iniciais
 
   while (W->relogio< T_FIM_DO_MUNDO){ //repetir até o fim da simulação //laço da simulação
@@ -205,6 +204,7 @@ int main ()
       default:
         break;
     }
+    free(ev);
   }
   fprio_destroi(LEF);
   destroi_mundo(W); // destruir o mundo
