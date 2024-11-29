@@ -127,22 +127,20 @@ void morre(int tempo, struct heroi_t *H, struct base_t *B, struct fprio_t *LEF, 
 /*Acha o menor valor no vetor de distancias e retorna seu indice 
   que é igual ao id da Base com essa distância da missão*/
 int minimo_vetor(int dist[N_BASES], int a, int b){
-  if (b == a)
-    return (a);
-  int menor = minimo_vetor(dist, a, b-1);
-  if (dist[b]<dist[menor])
-    menor = b;
+  int menor = a;
+  for (int i = a +1; i<b; i++)
+    if (dist[i]<dist[menor])
+      menor = i;
   return (menor);
 }
 
 /*Acha a base mais próxima apta para realizar a missão,
   caso a missão seja impossível retorna com BMP = NULL*/
-struct cjto_t *acha_BMP(int dist[N_BASES], int a, struct base_t *BMP, struct cjto_t *hab_rq, struct mundo_t *W) //chat
+struct cjto_t *acha_BMP(int dist[N_BASES], int a, struct base_t **BMP, struct cjto_t *hab_rq, struct cjto_t *habilidades struct mundo_t *W) //chat
 {
   if (a == N_BASES)
     return (NULL);
   int i = minimo_vetor(dist, a, N_BASES); //acha a base mais próxima
-  struct cjto_t *habilidades = malloc(sizeof(struct cjto_t));
   for (int l = 0; l<N_HEROIS; l++) //para cada heroi
     if (cjto_pertence(W->Bases[i]->pres, l)) //se ele está presente na base
       habilidades = cjto_uniao(habilidades, W->Herois[l]->hab); //adiciona as habilidades dele ao cjto de habilidades da base
@@ -151,7 +149,7 @@ struct cjto_t *acha_BMP(int dist[N_BASES], int a, struct base_t *BMP, struct cjt
     BMP = W->Bases[i]; //se tem BMP = Base;   
     return(habilidades);
   }else //se não chama o algoritmo para o vetor começando da segunda posição acha_BMP(dist, i++, BMP)
-    acha_BMP(dist, a++, BMP, hab_rq, W);
+    return(acha_BMP(dist, a + 1, BMP, hab_rq, W));
 }
 
 void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) //adicionar mensagens depuração
@@ -168,13 +166,14 @@ void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) /
     int dist = sqrt(((M->missao->local->x - B->local->x)*(M->missao->local->x - B->local->x)) + ((M->missao->local->y - B->local->y)*(M->missao->local->y - B->local->y)));
     distancias[i] = dist; //a distancia está no indice correspondente a sua base
   }
-    
-  struct cjto_t *habilid = acha_BMP(distancias, 0, BMP, M->missao->hab, W); //encontra BMP = base mais próxima da missão cujos heróis possam cumpri-la 
+
+  struct cjto_t *habilidades = malloc(sizeof(struct cjto_t));
+  acha_BMP(distancias, 0, BMP, M->missao->hab, struct cjto_t *habilidades, W); //encontra BMP = base mais próxima da missão cujos heróis possam cumpri-la 
     
   if (BMP) //se houver uma BMP:
   {
     printf("%6d: MISSAO %d CUMPRIDA BASE %d HABS: [ ", W->relogio, M->missao->id, BMP->id);
-    cjto_imprime(habilid);
+    cjto_imprime(habilidades);
     printf(" ]\n");
     M->missao->status = 1; //marca a missão M como cumprida
     BMP->nMissoes++;
