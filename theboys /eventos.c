@@ -63,14 +63,14 @@ void avisa(int tempo, struct base_t *B, struct fprio_t *LEF, struct mundo_t *W)
   printf(" ]\n");
   while (((cjto_card(B->pres))<B->max) && (lista_tamanho(B->espera)>0))//enquanto houver vaga em B e houver heróis esperando na fila:
   {
-    struct heroi_t *HN = malloc(sizeof(struct heroi_t));
-    lista_retira(B->espera, &HN->id, 0);//retira primeiro herói (H') da fila de B
-    cjto_insere(B->pres, HN->id); //adiciona H' ao conjunto de heróis presentes em B
+    int id_heroi;
+    lista_retira(B->espera, &id_heroi, 0);//retira primeiro herói (H') da fila de B
+    cjto_insere(B->pres, id_heroi); //adiciona H' ao conjunto de heróis presentes em B
     struct ev_t *entra = malloc(sizeof(struct ev_t));//cria e insere na LEF o evento ENTRA (agora, H', B)
-    entra->heroi = HN;
+    entra->heroi = W->Herois[id_heroi];
     entra->base = B;
     fprio_insere(LEF, entra, 4, tempo); 
-    printf("%6d: AVISA PORTEIRO BASE %d ADMITE %2d\n", W->relogio, B->id, HN->id);
+    printf("%6d: AVISA PORTEIRO BASE %d ADMITE %2d\n", W->relogio, B->id, id_heroi);
   }
 }
 
