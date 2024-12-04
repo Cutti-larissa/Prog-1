@@ -161,15 +161,18 @@ void destroi_mundo(struct mundo_t *W)
     cjto_destroi(W->Herois[i]->hab);
     free(W->Herois[i]);
   }
+  free(W->Herois[N_HEROIS]);
   for (int i=0; i<N_BASES; i++){
     cjto_destroi(W->Bases[i]->pres);
     lista_destroi(W->Bases[i]->espera);
     free(W->Bases[i]);
   }
+  free(W->Bases[N_BASES]);
   for (int i=0; i<N_MISSOES; i++){
     cjto_destroi(W->Missoes[i]->hab);
     free(W->Missoes[i]);
   }
+  free(W->Missoes[N_MISSOES]);
   free(W);
 }
 
