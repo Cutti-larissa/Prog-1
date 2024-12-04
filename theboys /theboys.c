@@ -81,6 +81,7 @@ void inicia_bases(struct mundo_t *W)
     base->pres = heros; // presentes = conjunto vazio (com capacidade para armazenar IDs de heróis até a lotação da base) (?)
     base->espera = esp;
     base->nMissoes = 0; 
+    base->filamax = 0;
     W->Bases[i] = base;  
   }
   printf("Bases criadas\n");
