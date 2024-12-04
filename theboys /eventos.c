@@ -124,8 +124,7 @@ void viaja(int tempo, struct heroi_t *H, struct base_t *D, struct fprio_t *LEF, 
 {
   struct base_t *B = W->Bases[H->base]; //calcula duração da viagem:
   //distância = distância cartesiana entre a base atual de H e a base D 
-  int dist = hypot((B->local->x - D->local->x),(B->local->y - D->local->y));  
-  //int dist = sqrt(((B->local->x - D->local->x)*(B->local->x - D->local->x)) + ((B->local->y - D->local->y)*(B->local->y - D->local->y)));
+  int dist = hypot((B->local.x - D->local.x),(B->local.y - D->local.y));  
   int durac = dist / H->veloc; //duração = distância / velocidade de H
   int h_chega = tempo + durac;
   struct ev_t *chega = malloc(sizeof(struct ev_t));  //cria e insere na LEF o evento CHEGA (agora + duração, H, D)
@@ -170,7 +169,7 @@ void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) /
   BMP = NULL;
   for (int i=0; i<N_BASES; i++){
     B = W->Bases[i];
-    int dist = hypot((M->missao->local->x - B->local->x),(M->missao->local->y - B->local->y));  //distância = distância cartesiana entre o local da missão e as bases do mundo
+    int dist = hypot((M->missao->local.x - B->local.x),(M->missao->local.y - B->local.y));  //distância = distância cartesiana entre o local da missão e as bases do mundo
     distancias[i] = dist; //a distancia está no indice correspondente a sua base
   }
 
@@ -182,14 +181,13 @@ void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) /
     int menor = minimo_vetor(distancias, j, N_BASES); //acha a base mais próxima
     for (int l = 0; l < N_HEROIS; l++) //para cada heroi
       if (cjto_pertence(W->Bases[menor]->pres, l)){ //se ele está presente na base
-        struct cjto_t *aux = cjto_uniao(habilidades, W->Herois[l]->hab);//adiciona as habilidades dele ao cjto de habilidades da base
+        struct cjto_t *aux = cjto_uniao(habilidades, W->Herois[l]->hab);//adiciona as habilidades dele ao cjto de habilidades da base //problema
         cjto_destroi(habilidades);
         habilidades = aux;
       }
     if (cjto_iguais(M->missao->hab, habilidades)) // verifica se a base tem as habilidades necessárias
       BMP = W->Bases[menor]; //se tem BMP = Base;   
   }
-  
   if (BMP) //se houver uma BMP:
   {
     printf("%6d: MISSAO %d CUMPRIDA BASE %d HABS: [ ", W->relogio, M->missao->id, BMP->id);
@@ -201,8 +199,8 @@ void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) /
     for (int l = 0; l < N_HEROIS; l++){ //para cada heroi
       if (cjto_pertence(BMP->pres, l)){ //se ele está presente na base
           int risco = M->missao->perigo / (W->Herois[l]->paciencia + W->Herois[l]->xp + 1); //risco = perigo (M) / (paciência (H) + experiência (H) + 1.0) (float?)
-          int aleat = rand () % (30);
-          if (risco > aleat) //se risco > aleatório (0, 30): (0 - 29 ou 0 - 30?)
+          int aleat = rand () % (31);
+          if (risco > aleat) //se risco > aleatório (0, 30)
           {
             W->Herois[l]->morte = BMP->id;
             struct ev_t *morre = malloc(sizeof(struct ev_t)); //cria e insere na LEF o evento MORRE (agora, H)
@@ -224,6 +222,7 @@ void missao(int tempo, struct ev_t *M, struct fprio_t *LEF, struct mundo_t *W) /
     mission->missao = M->missao;
     fprio_insere(LEF, mission, 8, h_missao);
   }
+  cjto_destroi(habilidades);
 }
 
 void fim(struct mundo_t *W, int evt_trat)
