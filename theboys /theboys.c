@@ -19,11 +19,8 @@ void inicia_mundo(struct mundo_t *W)
   W->mCumpridas = 0;
   W->Missoes[N_MISSOES] = calloc(N_MISSOES, sizeof (struct mission_t *));
   W->nHabilidades = N_HABILIDADES;
-  W->tam_mundo = malloc(sizeof(struct coord_t));
-  if (!W->tam_mundo)
-    return;
-  W->tam_mundo->x = N_TAMANHO_MUNDO;
-  W->tam_mundo->y = N_TAMANHO_MUNDO;
+  W->tam_mundo.x = N_TAMANHO_MUNDO;
+  W->tam_mundo.y = N_TAMANHO_MUNDO;
   W->relogio = T_INICIO;
   printf("Mundo criado\n");
 }
