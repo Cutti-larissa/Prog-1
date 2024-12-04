@@ -4,7 +4,7 @@
 #define ENTI 
 
 #define T_INICIO 0
-#define T_FIM_DO_MUNDO 525600
+#define T_FIM_DO_MUNDO  525600
 #define N_TAMANHO_MUNDO 20000
 #define N_HABILIDADES 10
 #define N_HEROIS N_HABILIDADES * 5
@@ -35,7 +35,7 @@ struct base_t
   int max; 
   struct cjto_t *pres;
   struct lista_t *espera;
-  struct coord_t *local;
+  struct coord_t local;
   int fila_max;
   int nMissoes;
 };
@@ -45,8 +45,7 @@ struct mission_t
   int id;
   struct cjto_t *hab;
   int perigo; 
-  struct coord_t *local;
-  int status;
+  struct coord_t local;
   int tentativas;
 };
 
@@ -65,7 +64,7 @@ struct mundo_t{
   int mCumpridas;
   struct mission_t *Missoes[N_MISSOES];
   int nHabilidades;
-  struct coord_t *tam_mundo;
+  struct coord_t tam_mundo;
   int relogio;
 };
 
