@@ -11,16 +11,14 @@
 #define N_BASES N_HEROIS / 5
 #define N_MISSOES T_FIM_DO_MUNDO / 100
 
-struct coord_t
-{
+struct coord_t{
   int x;
   int y;
 };
 
-struct heroi_t
-{
+struct heroi_t{
   int id;
-  struct cjto_t *hab;
+  struct cjto_t* hab;
   int paciencia;
   int veloc;
   int xp;
@@ -29,40 +27,38 @@ struct heroi_t
   int morte;
 };
 
-struct base_t
-{
+struct base_t{
   int id;
   int max; 
-  struct cjto_t *pres;
-  struct lista_t *espera;
+  struct cjto_t* pres;
+  struct lista_t* espera;
   struct coord_t local;
   int fila_max;
   int nMissoes;
 };
 
-struct mission_t
-{
+struct mission_t{
   int id;
-  struct cjto_t *hab;
+  struct cjto_t* hab;
   int perigo; 
   struct coord_t local;
   int tentativas;
 };
 
 struct ev_t{
-  struct heroi_t *heroi;
-  struct base_t *base;
-  struct mission_t *missao;
+  struct heroi_t* heroi;
+  struct base_t* base;
+  struct mission_t* missao;
 };
 
 struct mundo_t{
   int nHerois;
-  struct heroi_t *Herois[N_HEROIS];
+  struct heroi_t* Herois[N_HEROIS];
   int nBases;
-  struct base_t *Bases[N_BASES];
+  struct base_t* Bases[N_BASES];
   int nMissoes;
   int mCumpridas;
-  struct mission_t *Missoes[N_MISSOES];
+  struct mission_t* Missoes[N_MISSOES];
   int nHabilidades;
   struct coord_t tam_mundo;
   int relogio;
