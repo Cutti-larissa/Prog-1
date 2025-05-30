@@ -3,12 +3,10 @@
 
 /* calcula o Máximo Divisor Comum pelo método de Euclides */
 long mdc (long a, long b){
-  long sobra;
-  
   if ((a==0) | (b==0))
     return(1);
   
-  sobra = 1;  
+  long sobra = 1;  
   while (sobra != 0){
     sobra = a % b;
     a = b;
@@ -35,8 +33,6 @@ long modulo (long a){
 /* Recebe um número racional e o simplifica, caso seja inválido
 * devolve o racional sem simplificar */
 struct racional simplifica_r (struct racional r){
-  int div; 
-  
   if (!valido_r(r))
     return(r);
   
@@ -45,7 +41,7 @@ struct racional simplifica_r (struct racional r){
     r.den = (r.den * (-1));
   } 
   
-  div = mdc(modulo(r.num),modulo(r.den));
+  int div = mdc(modulo(r.num),modulo(r.den));
   r.num = r.num / div;
   r.den = r.den / div;  
   
@@ -65,7 +61,6 @@ struct racional cria_r (long numerador, long denominador){
 int valido_r (struct racional r){
   if(r.den == 0)
     return(0); 
-  
   return(1);
 }
 
@@ -75,6 +70,7 @@ int subtrai_r (struct racional r1, struct racional r2, struct racional *r3){
   
   r3->den = mmc(r1.den,r2.den);
   r3->num = (((r1.num*r3->den)/r1.den) - ((r2.num*r3->den)/r2.den));  
+  
   return(1);
 }
 
